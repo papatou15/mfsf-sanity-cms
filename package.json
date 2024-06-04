@@ -15,6 +15,9 @@
     "sanity"
   ],
   "dependencies": {
+    "@sanity/client": "^6.19.1",
+    "@sanity/icons": "^3.0.0",
+    "@sanity/ui": "^2.1.14",
     "@sanity/vision": "^3.44.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -25,6 +28,7 @@
   "devDependencies": {
     "@sanity/eslint-config-studio": "^4.0.0",
     "@types/react": "^18.0.25",
+    "electron": "^30.0.9",
     "eslint": "^8.6.0",
     "prettier": "^3.0.2",
     "typescript": "^5.1.6"
@@ -34,5 +38,7 @@
     "printWidth": 100,
     "bracketSpacing": false,
     "singleQuote": true
-  }
+  },
+  "description": "Hello world!",
+  "author": "me"
 }
