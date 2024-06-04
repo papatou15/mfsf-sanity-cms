@@ -55,7 +55,15 @@ const MemberActivities: React.FC<Props> = ({value}) => {
     }, [value, client])
 
     if (activities.length === 0) {
-        return null;
+        return (
+            <Card padding={4} radius={2} shadow={1}>
+                <Stack space={3}>
+                    <Text>
+                        Aucune activitée inscrite
+                    </Text>
+                </Stack>
+            </Card>
+        );
     }
     return (
         <Card padding={4} radius={2} shadow={1}>

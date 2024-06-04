@@ -55,7 +55,15 @@ const MemberEvents: React.FC<Props> = ({value}) => {
     }, [value, client])
 
     if (events.length === 0) {
-        return null;
+        return (
+            <Card padding={4} radius={2} shadow={1}>
+                <Stack space={3}>
+                    <Text>
+                        Aucun événement inscrit
+                    </Text>
+                </Stack>
+            </Card>
+        );
     }
     return (
         <Card padding={4} radius={2} shadow={1}>

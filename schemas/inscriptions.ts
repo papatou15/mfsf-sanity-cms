@@ -127,7 +127,7 @@ export const inscriptionType = defineType({
     initialValue: {
         member_check: false,
         benevole_check: false,
-        enrolledActivities: "",
+        enrolledActivities: "Aucune activitée",
     },
     preview: {
         select: {
