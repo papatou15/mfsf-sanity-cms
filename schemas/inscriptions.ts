@@ -2,6 +2,8 @@ import { defineField, defineType } from "sanity";
 import { UserIcon, UsersIcon, TaskIcon } from "@sanity/icons";
 import MemberActivitiesInput from "./components/MemberActivitiesInput";
 import MemberEventsInput from "./components/MemberEventsInput";
+import formatPhoneNumber from "./utils/formatPhoneNumber"
+import PaidBooleanInputWrapper from "./components/PaidBooleanInputWrapper";
 
 export const inscriptionType = defineType({
     name: 'inscription',
@@ -45,7 +47,37 @@ export const inscriptionType = defineType({
         defineField({
             name: "phone",
             title: "Numéro de téléphone",
-            type: "string",
+            type: "array",
+            of: [
+                defineField({
+                    type: 'object',
+                    name: 'phone_form',
+                    fields: [
+                        {name: 'phone_type', title: 'Type', type: 'string', options: 
+                            {list: [
+                                {title: 'Maison', value: 'home'},
+                                {title: 'Cellulaire', value: 'cell'},
+                                {title: 'Bureau', value: 'work'},
+                                {title: 'Autre', value: 'other'}
+                            ]}
+                        },
+                        {name: 'phone_no', type: 'string', title: "Numéro de téléphone"}
+                    ],
+                    preview: {
+                        select: {
+                            phone_type: 'phone_type',
+                            phone_no: 'phone_no'
+                        },
+                        prepare({ phone_type, phone_no }){
+                            const phoneFormatted = formatPhoneNumber(phone_no) 
+
+                            return{
+                                title: `${phoneFormatted} (${phone_type})`
+                            }
+                        }
+                    }
+                })
+            ],
             group: 'renseignements',
         }),
         defineField({
@@ -63,14 +95,31 @@ export const inscriptionType = defineType({
             }
         }),
         defineField({
-            name: 'member_date',
-            title: 'Date de renouvellement',
+            name: 'paid_check',
+            title: 'Cotisation payée?',
+            type: 'boolean',
+            components: {
+                input: PaidBooleanInputWrapper
+            },
+            hidden: ({ parent }) => !parent.member_check
+        }),
+        defineField({
+            name: 'paidTime',
             type: 'date',
+            title: 'Journée payée',
             hidden: ({ parent }) => !parent.member_check
         }),
         defineField({
             name: 'benevole_check',
             title: 'Bénévole?',
+            type: 'boolean',
+            options: {
+                layout: 'checkbox'
+            }
+        }),
+        defineField({
+            name: 'employee_check',
+            title: 'Employé?',
             type: 'boolean',
             options: {
                 layout: 'checkbox'
@@ -87,8 +136,21 @@ export const inscriptionType = defineType({
                     fields: [
                         {name: 'nom', title: 'Prénom', type: 'string'},
                         {name: 'nom_famille', title: 'Nom de famille', type: 'string'},
-                        {name: 'age', title: 'Âge', type: 'number'}
-                    ]
+                        {name: 'age', title: 'Date de naissance', type: 'date'}
+                    ],
+                    preview: {
+                        select: {
+                            nom: 'nom',
+                            nom_famille: 'nom_famille',
+                            date: 'age'
+                        },
+                        prepare({nom, nom_famille, date}){
+                            return {
+                                title: `${nom} ${nom_famille}`,
+                                subtitle: date,
+                            }
+                        }
+                    }
                 })
             ]
         }),
@@ -127,6 +189,7 @@ export const inscriptionType = defineType({
     initialValue: {
         member_check: false,
         benevole_check: false,
+        employee_check: false,
         enrolledActivities: "Aucune activitée",
     },
     preview: {

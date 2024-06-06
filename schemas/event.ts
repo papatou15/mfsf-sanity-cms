@@ -36,7 +36,23 @@ export const eventType = defineType({
                                 })
                             ]
                         })
-                    ]
+                    ],
+                    preview: {
+                        select: {
+                            members: 'members',
+                            date: 'date'
+                        },
+                        prepare({members, date}){
+                            console.log(members)
+
+                            const memberAmount = members != undefined ? members.length : 0
+
+                            return{
+                                title: date,
+                                subtitle: `${memberAmount} inscriptions`
+                            }
+                        }
+                    }
                 }
             ]
         })
