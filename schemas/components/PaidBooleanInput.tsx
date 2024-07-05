@@ -30,13 +30,21 @@ const PaidBooleanInput: React.FC<PaidBooleanInputProps> = ({value, onChange, doc
 
     const handleCheckboxChange = () => {
 
+        if (value) return;
+
         if (window.confirm(`Êtes-vous certains de vouloir cocher cette option? \nElle ne sera débarrée que d'ici un an!`)) {
             const currentDate = new Date().toISOString();
             const currentDatePatched = new Date(currentDate);
             const formattedDate = `${String(currentDatePatched.getFullYear())}-${String(currentDatePatched.getMonth() + 1).padStart(2, '0')}-${String(currentDatePatched.getDate()).padStart(2, '0')}`
             client.patch(documentId)
-                .set({ "member_form.paidTime": formattedDate })
+                .set({ "member_form.paidTime": formattedDate, "member_form.paid_check": true })
                 .commit()
+                .then(() => {
+                    onChange({type: 'set', value: true})
+                })
+                .catch((error) => {
+                    console.error("Failed to update the document: ", error)
+                })
             value = true
             setIsReadOnly(true)
         }
@@ -45,7 +53,7 @@ const PaidBooleanInput: React.FC<PaidBooleanInputProps> = ({value, onChange, doc
     console.log("value " + value + "\nisReadOnly " + isReadOnly)
 
     return (
-        <Card padding={3} radius={2} shadow={1} tone={isReadOnly ? "positive" : "critical"}>
+        <Card padding={3} radius={2} shadow={1} tone={value ? "positive" : "critical"}>
             <Stack space={3}>
                 <Text size={2}>Cotisation payée?</Text>
                 <Box paddingY={2}>
@@ -55,7 +63,7 @@ const PaidBooleanInput: React.FC<PaidBooleanInputProps> = ({value, onChange, doc
                         disabled={isReadOnly}
                     />
                     <Box marginTop={4}>
-                        <Text size={1}>{isReadOnly ? "Ce champ se débarrera automatiquement un an après être coché " : ""}</Text>
+                        <Text size={1}>{value ? "Ce champ se débarrera automatiquement un an après être coché " : ""}</Text>
                     </Box>
                 </Box>
             </Stack>
