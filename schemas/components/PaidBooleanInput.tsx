@@ -1,15 +1,14 @@
 import React, {useState, useEffect} from 'react'
-import { useClient, useFormValue } from 'sanity'
-import { Checkbox, Box, Text, Stack, Label, Card } from '@sanity/ui'
+import { useClient } from 'sanity'
+import { Checkbox, Box, Text, Stack, Card } from '@sanity/ui'
 
 interface PaidBooleanInputProps {
     value: boolean;
     onChange: (event: {type: 'set'; value: boolean}) => void
     documentId: string;
-    title: string;
 }
 
-const PaidBooleanInput: React.FC<PaidBooleanInputProps> = ({value, onChange, documentId, title}) => {
+const PaidBooleanInput: React.FC<PaidBooleanInputProps> = ({value, onChange, documentId}) => {
     const client = useClient({apiVersion: "2022-03-07"});
     const [isReadOnly, setIsReadOnly] = useState(false);
     const [paidDate, setPaidDate] = useState<Date | null>(null)
@@ -23,33 +22,33 @@ const PaidBooleanInput: React.FC<PaidBooleanInputProps> = ({value, onChange, doc
                     setPaidDate(fetchedPaidDate);
                     const oneYearLater = new Date(fetchedPaidDate);
                     oneYearLater.setFullYear(fetchedPaidDate.getFullYear() + 1);
-                    setIsReadOnly(new Date() < oneYearLater)
-                } else {
-                    setIsReadOnly(false)
+                    setIsReadOnly(new Date() <= oneYearLater)
                 }
             })
         }
     }), [documentId, client]
 
     const handleCheckboxChange = () => {
-        if (value) return;
 
         if (window.confirm(`Êtes-vous certains de vouloir cocher cette option? \nElle ne sera débarrée que d'ici un an!`)) {
             const currentDate = new Date().toISOString();
+            const currentDatePatched = new Date(currentDate);
+            const formattedDate = `${String(currentDatePatched.getFullYear())}-${String(currentDatePatched.getMonth() + 1).padStart(2, '0')}-${String(currentDatePatched.getDate()).padStart(2, '0')}`
             client.patch(documentId)
-                .set({ paidDate: currentDate })
+                .set({ "member_form.paidTime": formattedDate })
                 .commit()
-                .then(() => {
-                    onChange({ type: 'set', value: true })
-                })
+            value = true
+            setIsReadOnly(true)
         }
     }
 
+    console.log("value " + value + "\nisReadOnly " + isReadOnly)
+
     return (
-        <Card padding={3} radius={2} shadow={1} tone="positive">
+        <Card padding={3} radius={2} shadow={1} tone={isReadOnly ? "positive" : "critical"}>
             <Stack space={3}>
-                <Label>{title}</Label>
-                <Box>
+                <Text size={2}>Cotisation payée?</Text>
+                <Box paddingY={2}>
                     <Checkbox 
                         checked={value}
                         onChange={handleCheckboxChange}
