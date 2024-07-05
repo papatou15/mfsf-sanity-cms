@@ -234,6 +234,62 @@ export const inscriptionType = defineType({
             }
         }),
         defineField({
+            name: 'benevole_form',
+            title: 'Formulaire bénévole',
+            type: 'object',
+            hidden: ({ parent }) => !parent.benevole_check,
+            fields: [
+                defineField({
+                    name: 'domaines',
+                    title: 'Domaines à couvrir',
+                    type: 'array',
+                    of: [{type: 'string'}],
+                    options: {
+                        layout: 'grid',
+                        list: [
+                            {title: 'Distribution des denrées', value: 'denrees'},
+                            {title: 'Lavage des jouets', value: 'jouets'},
+                            {title: 'Ménage', value: 'menage'},
+                            {title: 'Cuisson de nourriture', value: 'cuisine'},
+                            {title: 'Friperie', value: 'friperie'},
+                            {title: 'Travaux sur le terrain', value: 'terrain'},
+                            {title: 'Travaux de scrétariats', value: 'secretariat'},
+                            {title: 'Vider le camion et tri de nourriture', value: 'camion'},
+                        ]
+                    }
+                }),
+                defineField({
+                    name: 'disponibilites',
+                    title: 'Disponibilitées',
+                    type: 'array',
+                    of: [{type: 'string'}],
+                    options: {
+                        layout: 'grid',
+                        list: [
+                            {title: 'Lundi AM', value: 'lundi-am'},
+                            {title: 'Lundi PM', value: 'lundi-pm'},
+                            {title: 'Mardi AM', value: 'mardi-am'},
+                            {title: 'Mardi PM', value: 'mardi-pm'},
+                            {title: 'Mercredi AM', value: 'mercredi-am'},
+                            {title: 'Mercredi PM', value: 'mercredi-pm'},
+                            {title: 'Jeudi AM', value: 'jeudi-am'},
+                            {title: 'Jeudi PM', value: 'jeudi-pm'},
+                            {title: 'Vendredi AM', value: 'vendredi-am'},
+                            {title: 'Vendredi PM', value: 'vendredi-pm'},
+                            {title: 'Samedi AM', value: 'samedi-am'},
+                            {title: 'Samedi PM', value: 'samedi-pm'},
+                        ]
+                    }
+                }),
+                defineField({
+                    name: 'raison',
+                    title: `Pourquoi je veux m'impliquer comme bénévole`,
+                    type: 'array',
+                    of: [{type: 'block'}]
+                })
+            ]
+        }),
+        defineField({
             name: 'employee_check',
             title: 'Employé?',
             type: 'boolean',
