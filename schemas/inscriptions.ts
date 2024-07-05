@@ -253,7 +253,7 @@ export const inscriptionType = defineType({
                             {title: 'Cuisson de nourriture', value: 'cuisine'},
                             {title: 'Friperie', value: 'friperie'},
                             {title: 'Travaux sur le terrain', value: 'terrain'},
-                            {title: 'Travaux de scrétariats', value: 'secretariat'},
+                            {title: 'Travaux de secrétariat', value: 'secretariat'},
                             {title: 'Vider le camion et tri de nourriture', value: 'camion'},
                         ]
                     }
