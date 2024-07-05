@@ -123,6 +123,19 @@ export const inscriptionType = defineType({
                     of: [defineField({name: "langue", title: "Langue", type: 'string'})]
                 }),
                 defineField({
+                    name: 'familial_status',
+                    title: 'Statut familial',
+                    type: 'string',
+                    options: {
+                        list: [
+                            {title: 'Célibataire', value: 'celibataire'},
+                            {title: 'En couple', value: 'couple'},
+                            {title: 'Marié(e)', value: 'marie'},
+                            {title: 'Veuf(ve)', value: 'veuf'},
+                        ]
+                    }
+                }),
+                defineField({
                     name: 'paid_check',
                     title: 'Cotisation payée?',
                     type: 'boolean',
