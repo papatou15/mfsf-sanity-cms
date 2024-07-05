@@ -147,6 +147,7 @@ export const inscriptionType = defineType({
                     name: 'paidTime',
                     type: 'date',
                     title: 'Journée payée',
+                    readOnly: ({ value }) => !!value
                 }),
                 defineField({
                     name: 'family_members',
