@@ -47,6 +47,8 @@ const MemberActivities: React.FC<Props> = ({value}) => {
                 );
 
                 setActivities(memberActivity);
+
+                console.log(activities)
             })
             .catch((error: ClientError) => {
                 console.error('Error fetching events:', error.message)
