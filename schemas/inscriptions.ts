@@ -240,6 +240,22 @@ export const inscriptionType = defineType({
             hidden: ({ parent }) => !parent.benevole_check,
             fields: [
                 defineField({
+                    name: 'actif_check',
+                    title: 'Actif?',
+                    type: 'boolean',
+                    options: {
+                        layout: "checkbox"
+                    }
+                }),
+                defineField({
+                    name: 'code_check',
+                    title: `Code d'éthique signé?`,
+                    type: 'boolean',
+                    options: {
+                        layout: 'checkbox'
+                    }
+                }),
+                defineField({
                     name: 'domaines',
                     title: 'Domaines à couvrir',
                     type: 'array',
@@ -286,7 +302,13 @@ export const inscriptionType = defineType({
                     title: `Pourquoi je veux m'impliquer comme bénévole`,
                     type: 'array',
                     of: [{type: 'block'}]
-                })
+                }),
+                defineField({
+                    name: 'heures',
+                    title: 'Heures accumulées',
+                    type: 'number'
+                }),
+                
             ]
         }),
         defineField({

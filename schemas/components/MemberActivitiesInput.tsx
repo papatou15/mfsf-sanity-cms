@@ -9,7 +9,7 @@ const MemberActivitiesInput: React.FC = () => {
     return null;
   }
 
-  return <MemberActivities value={documentId} />;
+  return <MemberActivities documentId={documentId} />;
 };
 
 export default MemberActivitiesInput;

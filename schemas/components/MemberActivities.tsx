@@ -5,7 +5,7 @@ import { Link } from 'sanity/router';
 import { Card, Stack, Text, Heading, Box } from '@sanity/ui';
 
 interface Props {
-    value: String;
+    documentId: string;
 }
 
 interface Activity {
@@ -19,13 +19,13 @@ interface Activity {
     }[];
 }
 
-const MemberActivities: React.FC<Props> = ({value}) => {
+const MemberActivities: React.FC<Props> = ({documentId}) => {
     const client = useClient({apiVersion: "2022-03-07"});
     const [activities, setActivities] = useState<Activity[]>([]);
 
     useEffect(() => {
 
-        if (value) {
+        if (documentId) {
             const query = `
                 *[_type == "activity"]{ 
                     _id,
@@ -40,11 +40,12 @@ const MemberActivities: React.FC<Props> = ({value}) => {
             `;
 
             client.fetch(query).then((data: Activity[]) => {
-                const memberActivity = data.filter(activity => 
-                    activity.dates.some(date =>
-                        date.members.some(member => member._id === value)
+                const memberActivity = data.map(activity => ({
+                    ...activity,
+                    dates: activity.dates?.filter(date =>
+                        date.members?.some(member => member._id === documentId)
                     )
-                );
+                })).filter(activity => activity.dates && activity.dates.length > 0);
 
                 setActivities(memberActivity);
             })
@@ -52,7 +53,7 @@ const MemberActivities: React.FC<Props> = ({value}) => {
                 console.error('Error fetching events:', error.message)
             })
         }
-    }, [value, client])
+    }, [documentId, client])
 
     if (activities.length === 0) {
         return (
