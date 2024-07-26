@@ -9,7 +9,7 @@ const MemberEventsInput: React.FC = () => {
     return null;
   }
 
-  return <MemberEvents value={documentId} />;
+  return <MemberEvents documentId={documentId} />;
 };
 
 export default MemberEventsInput;

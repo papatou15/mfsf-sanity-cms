@@ -50,8 +50,6 @@ const PaidBooleanInput: React.FC<PaidBooleanInputProps> = ({value, onChange, doc
         }
     }
 
-    console.log("value " + value + "\nisReadOnly " + isReadOnly)
-
     return (
         <Card padding={3} radius={2} shadow={1} tone={value ? "positive" : "critical"}>
             <Stack space={3}>
