@@ -15,8 +15,10 @@
     "sanity"
   ],
   "dependencies": {
+    "@sanity/cli": "^3.55.0",
     "@sanity/client": "^6.19.1",
     "@sanity/icons": "^3.0.0",
+    "@sanity/locale-fr-fr": "^1.2.10",
     "@sanity/ui": "^2.1.14",
     "@sanity/vision": "^3.44.0",
     "react": "^18.2.0",
