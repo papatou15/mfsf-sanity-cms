@@ -43,7 +43,6 @@ export const eventType = defineType({
                             date: 'date'
                         },
                         prepare({members, date}){
-                            console.log(members)
 
                             const memberAmount = members != undefined ? members.length : 0
 

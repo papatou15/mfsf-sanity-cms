@@ -102,7 +102,9 @@ export const inscriptionType = defineType({
                             {title: "Emploi temps partiel", value: "half-time"},
                             {title: "Sans emploi/Au foyer", value: "at_home"},
                             {title: "Travailleur autonome", value: "autonome"},
-                            {title: "Aux études", value: "etudiant"}
+                            {title: "Aux études", value: "etudiant"},
+                            {title: "Retraité", value: "retraite"},
+                            {title: "Préfère ne pas répondre", value: "no_answer"}
                         ]
                     }
                 }),
@@ -132,22 +134,46 @@ export const inscriptionType = defineType({
                             {title: 'En couple', value: 'couple'},
                             {title: 'Marié(e)', value: 'marie'},
                             {title: 'Veuf(ve)', value: 'veuf'},
+                            {title: "Préfère ne pas répondre", value: "no_answer"}
                         ]
                     }
                 }),
+                // defineField({
+                //     name: 'paid_check',
+                //     title: 'Cotisation payée?',
+                //     type: 'boolean',
+                //     components: {
+                //         input: PaidBooleanInputWrapper
+                //     }
+                // }),
                 defineField({
-                    name: 'paid_check',
-                    title: 'Cotisation payée?',
-                    type: 'boolean',
-                    components: {
-                        input: PaidBooleanInputWrapper
-                    }
+                    name: 'adhesionTime',
+                    type: 'date',
+                    title: `Date d'adhésion`,
                 }),
                 defineField({
                     name: 'paidTime',
                     type: 'date',
                     title: 'Journée payée',
-                    readOnly: ({ value }) => !!value
+                    // readOnly: ({ value }) => !!value
+                }),
+                defineField({
+                    name: 'paidMethod',
+                    type: 'string',
+                    title: 'Méthode de paiement',
+                    options: {
+                        list: [
+                            {title: 'Espèce', value: 'monnaie'},
+                            {title: 'Crédit', value: 'credit'},
+                            {title: 'Débit', value: 'debit'},
+                            {title: 'Gratuité', value: 'free'}
+                        ]
+                    }
+                }),
+                defineField({
+                    name: 'renewTime',
+                    type: 'date',
+                    title: 'Date de renouvellement',
                 }),
                 defineField({
                     name: 'family_members',
@@ -166,7 +192,8 @@ export const inscriptionType = defineType({
                                         list: [
                                             {title: 'Homme', value: 'homme'},
                                             {title: 'Femme', value: 'femme'},
-                                            {title: 'Autre', value: 'autre'}
+                                            {title: 'Autre', value: 'autre'},
+                                            {title: "Préfère ne pas répondre", value: "no_answer"}
                                         ]
                                     }},
                                     {name: 'other_genre', title: 'Autre', type: 'string', hidden: ({parent}) => parent?.genre !== 'autre'},
@@ -175,6 +202,7 @@ export const inscriptionType = defineType({
                                     list: [
                                         {title: 'Père', value: 'pere'},
                                         {title: 'Mère', value: 'mere'},
+                                        {title: 'Conjoint(e)', value: 'conjoint'},
                                         {title: 'Grand-père', value: 'grand-pere'},
                                         {title: 'Grand-mère', value: 'grand-mere'},
                                         {title: 'Fils', value: 'fils'},
@@ -182,7 +210,9 @@ export const inscriptionType = defineType({
                                         {title: 'Neveu', value: 'neveu'},
                                         {title: 'Nièce', value: 'niece'},
                                         {title: 'Oncle', value: 'oncle'},
-                                        {title: 'Tante', value: 'tante'}
+                                        {title: 'Tante', value: 'tante'},
+                                        {title: 'Ne sais pas', value: 'no_idea'},
+                                        {title: "Préfère ne pas répondre", value: "no_answer"}
                                     ]
                                 }}
                             ],
@@ -219,7 +249,8 @@ export const inscriptionType = defineType({
                             {title: `20'001$ - 30'000$`, value: '20k-30k'},
                             {title: `30'001$ - 40'000$`, value: '30k-40k'},
                             {title: `40'001$ - 50'000$`, value: '40k-50k'},
-                            {title: `50'001 et +`, value: '>50k'}
+                            {title: `50'001 et +`, value: '>50k'},
+                            {title: "Préfère ne pas répondre", value: "no_answer"}
                         ]
                     }
                 }),
@@ -239,6 +270,22 @@ export const inscriptionType = defineType({
             type: 'object',
             hidden: ({ parent }) => !parent.benevole_check,
             fields: [
+                defineField({
+                    name: 'actif_check',
+                    title: 'Actif?',
+                    type: 'boolean',
+                    options: {
+                        layout: "checkbox"
+                    }
+                }),
+                defineField({
+                    name: 'code_check',
+                    title: `Code d'éthique signé?`,
+                    type: 'boolean',
+                    options: {
+                        layout: 'checkbox'
+                    }
+                }),
                 defineField({
                     name: 'domaines',
                     title: 'Domaines à couvrir',
@@ -286,6 +333,20 @@ export const inscriptionType = defineType({
                     title: `Pourquoi je veux m'impliquer comme bénévole`,
                     type: 'array',
                     of: [{type: 'block'}]
+                }),
+                defineField({
+                    name: 'heures',
+                    title: 'Heures accumulées',
+                    type: 'number'
+                }),
+                defineField({
+                    name: 'codeEthiqueSigned',
+                    title: `Code d'éthique signé?`,
+                    type: 'boolean',
+                    initialValue: false,
+                    options: {
+                        layout: 'checkbox'
+                    }
                 })
             ]
         }),
@@ -297,7 +358,22 @@ export const inscriptionType = defineType({
                 layout: 'checkbox'
             }
         }),
-        
+        defineField({
+            name: "connaissance",
+            title: 'Comment avez-vous entendu parlé de la maison de la famille',
+            type: 'string',
+            options: {
+                list: [
+                    {title: 'Site Internet', value: 'website'},
+                    {title: 'Instagram', value: 'instagram'},
+                    {title: 'Facebook', value: 'facebook'},
+                    {title: 'Autre membre', value: 'membre'},
+                    {title: 'Famille', value: 'famille'},
+                    {title: 'Autre', value: 'other'},
+                    {title: 'Préfère ne pas répondre', value: 'nePasRepondre'}
+                ]
+            }
+        }),
         defineField({
             name: "enrolledActivities",
             title: "Activitées inscrites",
@@ -335,14 +411,23 @@ export const inscriptionType = defineType({
         select: {
             nom: 'nom',
             nom_famille: 'nom_famille',
-            zip_code: 'zip_code'
+            zip_code: 'zip_code',
+            nom_conjoint: 'member_form.family_members'
         },
-        prepare({nom, nom_famille,  zip_code}) {
-            const nameFormatted = `${nom} ${nom_famille}` || 'Membre inconnu'
+        prepare({nom, nom_famille, zip_code, nom_conjoint}) {
+            const conjoint = nom_conjoint?.find(member => member.familyLink === 'conjoint')
+
+            const conjointFormatted = conjoint ? `|| ${conjoint.nom} ${conjoint.nom_famille}` : ''
+
+            console.log(nom_conjoint)
+
+            // const conjointFormatted = `${conjoint.nom} ${conjoint.nom_famille}` || ''
+
+            const nameFormatted = `${nom} ${nom_famille} ${conjointFormatted}` || 'Membre inconnu'
 
             return{
                 title: nameFormatted,
-                subtitle: `${zip_code}`,
+                subtitle: zip_code,
             }
         }
     }
