@@ -48,6 +48,8 @@ const MemberActivities: React.FC<Props> = ({documentId}) => {
                 })).filter(activity => activity.dates && activity.dates.length > 0);
 
                 setActivities(memberActivity);
+
+                console.log(activities)
             })
             .catch((error: ClientError) => {
                 console.error('Error fetching events:', error.message)
