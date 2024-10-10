@@ -4,5 +4,16 @@ import { activityType } from "./activity"
 import { form612 } from "./form612"
 import { formGarderie } from "./formGarderie"
 import { formulaireMaker } from "./formulaireMaker"
+import { pageMaker } from "./pageMaker"
+import { heroSection } from "./pageMakerComponents/hero"
+import { columnBlock } from "./pageMakerComponents/columnBlocks"
+import { stackBlock } from "./pageMakerComponents/stackBlock"
+import { largeTitle } from "./pageMakerComponents/largeTitle"
+import { mediumTitle } from "./pageMakerComponents/mediumTitle"
+import { smallTitle } from "./pageMakerComponents/smallTitle"
+import { textInput } from "./pageMakerComponents/textInput"
+import { stringText } from "./pageMakerComponents/string"
+import { card } from "./pageMakerComponents/card"
+import { button } from "./pageMakerComponents/button"
 
-export const schemaTypes = [inscriptionType, eventType, activityType, form612, formGarderie, formulaireMaker]
+export const schemaTypes = [inscriptionType, eventType, activityType, form612, formGarderie, formulaireMaker, pageMaker, heroSection, columnBlock, stackBlock, largeTitle, mediumTitle, smallTitle, textInput, stringText, card, button]
