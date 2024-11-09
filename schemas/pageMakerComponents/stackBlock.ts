@@ -3,7 +3,7 @@ import { defineType, defineField } from "sanity";
 export const stackBlock = defineType({
     name: 'stackBlock',
     type: 'object',
-    title: 'Stack Block',
+    title: 'Bloc de contenu',
     fields: [
         {
             name: 'items',
@@ -18,6 +18,8 @@ export const stackBlock = defineType({
                 { type: 'textInput' },
                 { type: 'card' },
                 { type: 'button' },
+                { type: 'carousel' },
+                { type: 'textOnPicture' },
                 { type: 'stackBlock' },    // Allow stackBlock inside itself
             ],
         },

@@ -7,7 +7,7 @@ export const heroSection = defineType({
     fields: [
       { name: 'title', type: 'string', title: 'Titre' },
       { name: 'subTitle', type: 'string', title: 'Sous-titre' },
-      { name: 'image', type: 'image', title: 'Image' },
+      { name: 'image', type: 'image', title: 'Image', options: { metadata:[] } },
       {
         name: 'layout',
         type: 'string',
@@ -17,7 +17,7 @@ export const heroSection = defineType({
             { title: 'Par défaut (Titre à gauche, image à droite)', value: 'default' },
             { title: 'Alternatif (Title à droite, image à gauche)', value: 'mirrored' },
           ],
-          layout: 'radio', // This will display the options as radio buttons
+          layout: 'radio'
         },
       },
     ],

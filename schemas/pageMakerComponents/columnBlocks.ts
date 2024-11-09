@@ -34,6 +34,8 @@ export const columnBlock = defineType({
         { type: 'card' },
         { type: 'button' },
         { type: 'image' },
+        { type: 'carousel' },
+        { type: 'textOnPicture' }
       ],
       hidden: ({ parent }) => !parent.layout || parent.layout === undefined, // Hidden if no layout is selected
     },
@@ -52,6 +54,8 @@ export const columnBlock = defineType({
         { type: 'card' },
         { type: 'button' },
         { type: 'image' },
+        { type: 'carousel' },
+        { type: 'textOnPicture' }
       ],
       hidden: ({ parent }) => !parent.layout || parent.layout === undefined, // Hidden if no layout is selected
     },
@@ -70,6 +74,8 @@ export const columnBlock = defineType({
         { type: 'card' },
         { type: 'button' },
         { type: 'image' },
+        { type: 'carousel' },
+        { type: 'textOnPicture' }
       ],
       hidden: ({ parent }) => parent.layout !== 'three', // Hidden if layout is not three columns
     },

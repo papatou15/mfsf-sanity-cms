@@ -26,6 +26,15 @@ export const activityType = defineType({
                             type: 'date',
                         }),
                         defineField({
+                            name: 'inscriptionOuverte',
+                            title: 'Inscription ouverte?',
+                            type: 'boolean',
+                            options: {
+                                layout: 'checkbox'
+                            },
+                            initialValue: false
+                        }),
+                        defineField({
                             name: "members",
                             title: 'Inscriptions',
                             type: 'array',

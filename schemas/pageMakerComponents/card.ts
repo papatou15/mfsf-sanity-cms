@@ -18,7 +18,10 @@ export const card = defineType({
         defineField({
             name: 'image',
             title: 'Image',
-            type: 'image'
+            type: 'image',
+            options: {
+                metadata: []
+            }
         }),
         defineField({
             name: 'layout',
