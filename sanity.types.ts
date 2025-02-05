@@ -95,6 +95,7 @@ export type TextOnPicture = {
     _type: 'image'
   }
   layout?: 'default' | 'reverse'
+  bgColor?: Color
 }
 
 export type Carousel = {
@@ -215,6 +216,7 @@ export type StackBlock = {
       } & StackBlock)
   >
   layout?: 'horizontal' | 'vertical'
+  bgColor?: Color
 }
 
 export type ColumnBlock = {
@@ -352,6 +354,7 @@ export type ColumnBlock = {
         _key: string
       } & TextOnPicture)
   >
+  bgColor?: Color
 }
 
 export type HeroSection = {
@@ -370,6 +373,7 @@ export type HeroSection = {
     _type: 'image'
   }
   layout?: 'default' | 'mirrored'
+  bgColor?: Color
 }
 
 export type ContactForm = {
@@ -844,6 +848,39 @@ export type Inscription = {
   }>
 }
 
+export type Color = {
+  _type: 'color'
+  hex?: string
+  alpha?: number
+  hsl?: HslaColor
+  hsv?: HsvaColor
+  rgb?: RgbaColor
+}
+
+export type RgbaColor = {
+  _type: 'rgbaColor'
+  r?: number
+  g?: number
+  b?: number
+  a?: number
+}
+
+export type HsvaColor = {
+  _type: 'hsvaColor'
+  h?: number
+  s?: number
+  v?: number
+  a?: number
+}
+
+export type HslaColor = {
+  _type: 'hslaColor'
+  h?: number
+  s?: number
+  l?: number
+  a?: number
+}
+
 export type MediaTag = {
   _id: string
   _type: 'media.tag'
@@ -892,6 +929,10 @@ export type AllSanitySchemaTypes =
   | Activity
   | Event
   | Inscription
+  | Color
+  | RgbaColor
+  | HsvaColor
+  | HslaColor
   | MediaTag
   | Slug
 export declare const internalGroqTypeReferenceTo: unique symbol
