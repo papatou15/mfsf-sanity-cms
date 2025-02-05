@@ -5,7 +5,7 @@ export const columnBlock = defineType({
   type: 'object',
   title: 'Colonnes',
   fields: [
-    // Step 1: Layout selection comes first
+
     {
       name: 'layout',
       type: 'string',
@@ -19,7 +19,7 @@ export const columnBlock = defineType({
         layout: 'radio',
       },
     },
-    // Step 2: Column 1 content (conditionally visible)
+
     {
       name: 'column1',
       type: 'array',
@@ -37,9 +37,9 @@ export const columnBlock = defineType({
         { type: 'carousel' },
         { type: 'textOnPicture' }
       ],
-      hidden: ({ parent }) => !parent.layout || parent.layout === undefined, // Hidden if no layout is selected
+      hidden: ({ parent }) => !parent.layout || parent.layout === undefined,
     },
-    // Step 3: Column 2 content (conditionally visible)
+
     {
       name: 'column2',
       type: 'array',
@@ -57,9 +57,9 @@ export const columnBlock = defineType({
         { type: 'carousel' },
         { type: 'textOnPicture' }
       ],
-      hidden: ({ parent }) => !parent.layout || parent.layout === undefined, // Hidden if no layout is selected
+      hidden: ({ parent }) => !parent.layout || parent.layout === undefined,
     },
-    // Step 4: Column 3 content (conditionally visible, only for 3-column layout)
+
     {
       name: 'column3',
       type: 'array',
@@ -79,6 +79,22 @@ export const columnBlock = defineType({
       ],
       hidden: ({ parent }) => parent.layout !== 'three', // Hidden if layout is not three columns
     },
+    defineField({
+      name: 'bgColor',
+      type: 'color',
+      title: 'Couleur de fond',
+      options: {
+          colorList: [
+              '#8800C8',
+              '#E2B41B',
+              '#FFC300',
+              "#20453E",
+              "#e5e5e5",
+              "#000000",
+              "F9EFE3"
+          ]
+      }
+  })
   ],
   preview: {
     select: {

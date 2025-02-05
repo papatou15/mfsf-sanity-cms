@@ -45,6 +45,6 @@ export const carousel = defineType({
                     }
                 })
             ]
-        })
+        }),
     ]
 })

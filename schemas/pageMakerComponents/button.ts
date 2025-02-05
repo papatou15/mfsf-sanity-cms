@@ -14,6 +14,19 @@ export const button = defineType({
             name: 'link',
             title: 'Lien',
             type: 'url'
+        }),
+        defineField({
+            name: 'style',
+            title: 'Style',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Gros avec fond', value: 'coloredbg' },
+                    { title: 'Petit avec fond', value: 'smallbg' },
+                    { title: 'Gros sans fond', value: 'colorless' },
+                    { title: 'Petit sans fond', value: 'smallcolorless' }
+                ]
+            }
         })
     ]
 })

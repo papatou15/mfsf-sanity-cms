@@ -10,7 +10,7 @@ export const stackBlock = defineType({
             type: 'array',
             title: 'Blocks',
             of: [
-                { type: 'image' },         // Add images
+                { type: 'image' },
                 { type: 'largeTitle' },
                 { type: 'mediumTitle' },
                 { type: 'smallTitle' },
@@ -20,7 +20,7 @@ export const stackBlock = defineType({
                 { type: 'button' },
                 { type: 'carousel' },
                 { type: 'textOnPicture' },
-                { type: 'stackBlock' },    // Allow stackBlock inside itself
+                { type: 'stackBlock' },
             ],
         },
         {
@@ -35,6 +35,22 @@ export const stackBlock = defineType({
                 layout: 'radio',
             },
         },
+        defineField({
+            name: 'bgColor',
+            type: 'color',
+            title: 'Couleur de fond',
+            options: {
+                colorList: [
+                    '#8800C8',
+                    '#E2B41B',
+                    '#FFC300',
+                    "#20453E",
+                    "#e5e5e5",
+                    "#000000",
+                    "F9EFE3"
+                ]
+            }
+        })
     ],
     preview: {
         select: {

@@ -18,5 +18,7 @@ import { button } from "./pageMakerComponents/button"
 import { carousel } from "./pageMakerComponents/carousel"
 import { textOnPicture } from "./pageMakerComponents/textOnPicture"
 import { contact } from "./contact"
+import { menuType } from "./menu"
+import { contactFormType } from "./contactForm"
 
-export const schemaTypes = [inscriptionType, eventType, activityType, form612, formGarderie, formulaireMaker, pageMaker, heroSection, columnBlock, stackBlock, largeTitle, mediumTitle, smallTitle, textInput, stringText, card, button, carousel, textOnPicture, contact]
+export const schemaTypes = [inscriptionType, eventType, activityType, form612, formGarderie, formulaireMaker, pageMaker, menuType, contactFormType, heroSection, columnBlock, stackBlock, largeTitle, mediumTitle, smallTitle, textInput, stringText, card, button, carousel, textOnPicture, contact]

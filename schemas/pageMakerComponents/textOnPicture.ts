@@ -30,6 +30,22 @@ export const textOnPicture = defineType({
                     {title: 'Text à droite, image à gauche', value: 'reverse'}
                 ]
             }
+        }),
+        defineField({
+            name: 'bgColor',
+            type: 'color',
+            title: 'Couleur de fond',
+            options: {
+                colorList: [
+                    '#8800C8',
+                    '#E2B41B',
+                    '#FFC300',
+                    "#20453E",
+                    "#e5e5e5",
+                    "#000000",
+                    "F9EFE3"
+                ]
+            }
         })
     ],
     preview: {
