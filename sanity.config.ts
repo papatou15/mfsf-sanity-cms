@@ -5,6 +5,7 @@ import { schemaTypes } from './schemas'
 import { media } from 'sanity-plugin-media'
 import { frFRLocale } from '@sanity/locale-fr-fr'
 import { colorInput } from '@sanity/color-input'
+import deskStructure from './deskStructure'
 
 export default defineConfig({
   name: 'default',
@@ -13,7 +14,7 @@ export default defineConfig({
   projectId: 'm2q9id0y',
   dataset: 'production',
 
-  plugins: [structureTool(), visionTool(), media(), frFRLocale(), colorInput()],
+  plugins: [structureTool({structure: deskStructure}), visionTool(), media(), frFRLocale(), colorInput()],
 
   schema: {
     types: schemaTypes,

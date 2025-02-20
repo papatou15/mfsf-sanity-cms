@@ -1,7 +1,6 @@
 import { defineField, defineType } from "sanity";
 import formatPhoneNumber from "./utils/formatPhoneNumber";
 import { CheckmarkCircleIcon, DocumentTextIcon, HelpCircleIcon, UserIcon, WarningOutlineIcon } from "@sanity/icons";
-import { lazy } from "react";
 
 export const formGarderie = defineType({
     name: 'formGarderie',

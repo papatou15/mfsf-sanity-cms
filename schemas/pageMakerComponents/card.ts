@@ -13,7 +13,14 @@ export const card = defineType({
         defineField({
             name: 'subtitle',
             title: 'Sous-titre/Contenu',
-            type: 'text'
+            type: 'text',
+            hidden: ({ parent }) => parent?.layout !== 'bigCard'
+        }),
+        defineField({
+            name: 'modalContent',
+            title: 'Contenu',
+            type: 'stackBlock',
+            hidden: ({ parent }) => parent?.layout !== 'smallCard'
         }),
         defineField({
             name: 'image',

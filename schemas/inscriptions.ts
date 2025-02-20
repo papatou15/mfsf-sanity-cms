@@ -176,6 +176,13 @@ export const inscriptionType = defineType({
                     title: 'Date de renouvellement',
                 }),
                 defineField({
+                    name: 'transactionId',
+                    type: 'string',
+                    title: 'ID de Transaction Stripe',
+                    description: "Généré automatiquement quand le membre s'inscrit sur le site web et paye par Stripe",
+                    readOnly: true
+                }),
+                defineField({
                     name: 'family_members',
                     title: 'Autres membres de la famille',
                     type: 'array',
@@ -331,8 +338,7 @@ export const inscriptionType = defineType({
                 defineField({
                     name: 'raison',
                     title: `Pourquoi je veux m'impliquer comme bénévole`,
-                    type: 'array',
-                    of: [{type: 'block'}]
+                    type: 'text'
                 }),
                 defineField({
                     name: 'heures',
@@ -415,7 +421,7 @@ export const inscriptionType = defineType({
             nom_conjoint: 'member_form.family_members'
         },
         prepare({nom, nom_famille, zip_code, nom_conjoint}) {
-            const conjoint = nom_conjoint?.find(member => member.familyLink === 'conjoint')
+            const conjoint = nom_conjoint?.find((member: { familyLink: string; }) => member.familyLink === 'conjoint')
 
             const conjointFormatted = conjoint ? `|| ${conjoint.nom} ${conjoint.nom_famille}` : ''
 

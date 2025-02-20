@@ -20,6 +20,7 @@ export const stackBlock = defineType({
                 { type: 'button' },
                 { type: 'carousel' },
                 { type: 'textOnPicture' },
+                { type: 'columnBlock' },
                 { type: 'stackBlock' },
             ],
         },
