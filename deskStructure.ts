@@ -40,6 +40,7 @@ export default (S: StructureBuilder) =>
               S.documentTypeListItem('form6-12').title('Formulaire 6-12 ans').icon(DocumentIcon),
               S.documentTypeListItem('formGarderie').title('Formulaire Garderie').icon(DocumentIcon),
               S.documentTypeListItem('contactForm').title('Formulaire de Contact').icon(EnvelopeIcon),
+              S.documentTypeListItem('formulaires').title('Formulaires')
             ])
         ),
 

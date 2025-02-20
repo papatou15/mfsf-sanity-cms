@@ -21,5 +21,39 @@ import { contact } from "./contact"
 import { menuType } from "./menu"
 import { contactFormType } from "./contactForm"
 import { bannerType } from "./banner"
+import { checkboxField } from "./formMakerComponents/checkboxField"
+import { textField } from "./formMakerComponents/textField"
+import { radioField } from "./formMakerComponents/radioField"
+import { dropdownField } from "./formMakerComponents/dropdownField"
+import { dateField } from "./formMakerComponents/datePicker"
 
-export const schemaTypes = [inscriptionType, eventType, activityType, bannerType, form612, formGarderie, formulaireMaker, pageMaker, menuType, contactFormType, heroSection, columnBlock, stackBlock, largeTitle, mediumTitle, smallTitle, textInput, stringText, card, button, carousel, textOnPicture, contact]
+export const schemaTypes = [
+    inscriptionType,
+    eventType,
+    activityType,
+    bannerType,
+    form612,
+    formGarderie,
+    formulaireMaker,
+    pageMaker,
+    menuType,
+    contactFormType,
+    heroSection,
+    columnBlock,
+    stackBlock,
+    largeTitle,
+    mediumTitle,
+    smallTitle,
+    textInput,
+    stringText,
+    card,
+    button,
+    carousel,
+    textOnPicture,
+    contact,
+    checkboxField,
+    textField,
+    dropdownField,
+    radioField,
+    dateField
+]
