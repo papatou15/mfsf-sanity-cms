@@ -5104,7 +5104,40 @@
                   },
                   {
                     "type": "string",
+                    "value": "conjoint"
+                  },
+                  {
+                    "type": "string",
                     "value": "no_answer"
+                  }
+                ]
+              },
+              "optional": true
+            },
+            "scolarity": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "union",
+                "of": [
+                  {
+                    "type": "string",
+                    "value": "Primaire"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Secondaire"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Cégep"
+                  },
+                  {
+                    "type": "string",
+                    "value": "DEP"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Université"
                   }
                 ]
               },
@@ -5163,7 +5196,7 @@
               },
               "optional": true
             },
-            "family_members": {
+            "family_members_old": {
               "type": "objectAttribute",
               "value": {
                 "type": "array",
@@ -5311,6 +5344,594 @@
                         }
                       }
                     }
+                  }
+                }
+              },
+              "optional": true
+            },
+            "family_members": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "object",
+                "attributes": {
+                  "conjoint": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "object",
+                      "attributes": {
+                        "nom": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string"
+                          },
+                          "optional": true
+                        },
+                        "nom_famille": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string"
+                          },
+                          "optional": true
+                        },
+                        "age": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string"
+                          },
+                          "optional": true
+                        },
+                        "phone": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "array",
+                            "of": {
+                              "type": "object",
+                              "attributes": {
+                                "phone_type": {
+                                  "type": "objectAttribute",
+                                  "value": {
+                                    "type": "union",
+                                    "of": [
+                                      {
+                                        "type": "string",
+                                        "value": "home"
+                                      },
+                                      {
+                                        "type": "string",
+                                        "value": "cell"
+                                      },
+                                      {
+                                        "type": "string",
+                                        "value": "work"
+                                      },
+                                      {
+                                        "type": "string",
+                                        "value": "other"
+                                      }
+                                    ]
+                                  },
+                                  "optional": true
+                                },
+                                "phone_no": {
+                                  "type": "objectAttribute",
+                                  "value": {
+                                    "type": "string"
+                                  },
+                                  "optional": true
+                                },
+                                "_type": {
+                                  "type": "objectAttribute",
+                                  "value": {
+                                    "type": "string",
+                                    "value": "phone_form"
+                                  }
+                                }
+                              },
+                              "rest": {
+                                "type": "object",
+                                "attributes": {
+                                  "_key": {
+                                    "type": "objectAttribute",
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "optional": true
+                        },
+                        "genre_check": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "object",
+                            "attributes": {
+                              "genre": {
+                                "type": "objectAttribute",
+                                "value": {
+                                  "type": "union",
+                                  "of": [
+                                    {
+                                      "type": "string",
+                                      "value": "homme"
+                                    },
+                                    {
+                                      "type": "string",
+                                      "value": "femme"
+                                    },
+                                    {
+                                      "type": "string",
+                                      "value": "autre"
+                                    },
+                                    {
+                                      "type": "string",
+                                      "value": "no_answer"
+                                    }
+                                  ]
+                                },
+                                "optional": true
+                              },
+                              "other_genre": {
+                                "type": "objectAttribute",
+                                "value": {
+                                  "type": "string"
+                                },
+                                "optional": true
+                              }
+                            }
+                          },
+                          "optional": true
+                        },
+                        "scolarity": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "union",
+                            "of": [
+                              {
+                                "type": "string",
+                                "value": "Primaire"
+                              },
+                              {
+                                "type": "string",
+                                "value": "Secondaire"
+                              },
+                              {
+                                "type": "string",
+                                "value": "Cégep"
+                              },
+                              {
+                                "type": "string",
+                                "value": "DEP"
+                              },
+                              {
+                                "type": "string",
+                                "value": "Université"
+                              }
+                            ]
+                          },
+                          "optional": true
+                        },
+                        "occupation": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "union",
+                            "of": [
+                              {
+                                "type": "string",
+                                "value": "full_time"
+                              },
+                              {
+                                "type": "string",
+                                "value": "half-time"
+                              },
+                              {
+                                "type": "string",
+                                "value": "at_home"
+                              },
+                              {
+                                "type": "string",
+                                "value": "autonome"
+                              },
+                              {
+                                "type": "string",
+                                "value": "etudiant"
+                              },
+                              {
+                                "type": "string",
+                                "value": "retraite"
+                              },
+                              {
+                                "type": "string",
+                                "value": "no_answer"
+                              }
+                            ]
+                          },
+                          "optional": true
+                        }
+                      }
+                    },
+                    "optional": true
+                  },
+                  "childrenUnder18": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "array",
+                      "of": {
+                        "type": "object",
+                        "attributes": {
+                          "nom": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "nom_famille": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "age": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "genre_check": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "object",
+                              "attributes": {
+                                "genre": {
+                                  "type": "objectAttribute",
+                                  "value": {
+                                    "type": "union",
+                                    "of": [
+                                      {
+                                        "type": "string",
+                                        "value": "homme"
+                                      },
+                                      {
+                                        "type": "string",
+                                        "value": "femme"
+                                      },
+                                      {
+                                        "type": "string",
+                                        "value": "autre"
+                                      },
+                                      {
+                                        "type": "string",
+                                        "value": "no_answer"
+                                      }
+                                    ]
+                                  },
+                                  "optional": true
+                                },
+                                "other_genre": {
+                                  "type": "objectAttribute",
+                                  "value": {
+                                    "type": "string"
+                                  },
+                                  "optional": true
+                                }
+                              }
+                            },
+                            "optional": true
+                          },
+                          "familyLink": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "fils"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "fille"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "neveu"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "niece"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "no_answer"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "children"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "optional": true
+                  },
+                  "childrenOver18": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "array",
+                      "of": {
+                        "type": "object",
+                        "attributes": {
+                          "nom": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "nom_famille": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "age": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "genre_check": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "object",
+                              "attributes": {
+                                "genre": {
+                                  "type": "objectAttribute",
+                                  "value": {
+                                    "type": "union",
+                                    "of": [
+                                      {
+                                        "type": "string",
+                                        "value": "homme"
+                                      },
+                                      {
+                                        "type": "string",
+                                        "value": "femme"
+                                      },
+                                      {
+                                        "type": "string",
+                                        "value": "autre"
+                                      },
+                                      {
+                                        "type": "string",
+                                        "value": "no_answer"
+                                      }
+                                    ]
+                                  },
+                                  "optional": true
+                                },
+                                "other_genre": {
+                                  "type": "objectAttribute",
+                                  "value": {
+                                    "type": "string"
+                                  },
+                                  "optional": true
+                                }
+                              }
+                            },
+                            "optional": true
+                          },
+                          "familyLink": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "fils"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "fille"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "neveu"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "niece"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "no_answer"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "school": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "child"
+                            }
+                          }
+                        },
+                        "rest": {
+                          "type": "object",
+                          "attributes": {
+                            "_key": {
+                              "type": "objectAttribute",
+                              "value": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "optional": true
+                  },
+                  "handicappedMemberCheck": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  },
+                  "handicappedMemberSection": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "object",
+                      "attributes": {
+                        "functionnal": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "boolean"
+                          },
+                          "optional": true
+                        },
+                        "handicappedMember": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "object",
+                            "attributes": {
+                              "nom": {
+                                "type": "objectAttribute",
+                                "value": {
+                                  "type": "string"
+                                },
+                                "optional": true
+                              },
+                              "nom_famille": {
+                                "type": "objectAttribute",
+                                "value": {
+                                  "type": "string"
+                                },
+                                "optional": true
+                              },
+                              "age": {
+                                "type": "objectAttribute",
+                                "value": {
+                                  "type": "string"
+                                },
+                                "optional": true
+                              },
+                              "genre_check": {
+                                "type": "objectAttribute",
+                                "value": {
+                                  "type": "object",
+                                  "attributes": {
+                                    "genre": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "union",
+                                        "of": [
+                                          {
+                                            "type": "string",
+                                            "value": "homme"
+                                          },
+                                          {
+                                            "type": "string",
+                                            "value": "femme"
+                                          },
+                                          {
+                                            "type": "string",
+                                            "value": "autre"
+                                          },
+                                          {
+                                            "type": "string",
+                                            "value": "no_answer"
+                                          }
+                                        ]
+                                      },
+                                      "optional": true
+                                    },
+                                    "other_genre": {
+                                      "type": "objectAttribute",
+                                      "value": {
+                                        "type": "string"
+                                      },
+                                      "optional": true
+                                    }
+                                  }
+                                },
+                                "optional": true
+                              },
+                              "diagnostic": {
+                                "type": "objectAttribute",
+                                "value": {
+                                  "type": "string"
+                                },
+                                "optional": true
+                              }
+                            }
+                          },
+                          "optional": true
+                        },
+                        "helperCheck": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "boolean"
+                          },
+                          "optional": true
+                        },
+                        "helper": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "object",
+                            "attributes": {
+                              "nom": {
+                                "type": "objectAttribute",
+                                "value": {
+                                  "type": "string"
+                                },
+                                "optional": true
+                              },
+                              "nom_famille": {
+                                "type": "objectAttribute",
+                                "value": {
+                                  "type": "string"
+                                },
+                                "optional": true
+                              }
+                            }
+                          },
+                          "optional": true
+                        }
+                      }
+                    },
+                    "optional": true
                   }
                 }
               },
@@ -5469,6 +6090,14 @@
             },
             {
               "type": "string",
+              "value": "event"
+            },
+            {
+              "type": "string",
+              "value": "pastMember"
+            },
+            {
+              "type": "string",
               "value": "other"
             },
             {
@@ -5476,6 +6105,274 @@
               "value": "nePasRepondre"
             }
           ]
+        },
+        "optional": true
+      },
+      "moreInfo": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "object",
+          "attributes": {
+            "livingPlace": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "object",
+                "attributes": {
+                  "habitation": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  },
+                  "otherPlace": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "howLong": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  }
+                }
+              },
+              "optional": true
+            },
+            "immigration": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "boolean"
+              },
+              "optional": true
+            },
+            "immigrationSection": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "object",
+                "attributes": {
+                  "immigrationTime": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "immigrationIssuesCheck": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  },
+                  "immigrationIssues": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "immigrationStatus": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "demarche": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  }
+                }
+              },
+              "optional": true
+            },
+            "principalIncome": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "union",
+                "of": [
+                  {
+                    "type": "string",
+                    "value": "Emplois"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Assurance salaire (privée)"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Régime de retraite"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Prêts et bourse"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Chômage"
+                  },
+                  {
+                    "type": "string",
+                    "value": "CNESST"
+                  },
+                  {
+                    "type": "string",
+                    "value": "SAAQ"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Pension de retraite"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Aide financière de dernier recours (aide sociale)"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Pension de veuve"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Allocations familiales"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Pension alimentaire"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Allocation au logement"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Autre"
+                  }
+                ]
+              },
+              "optional": true
+            },
+            "otherPrincipalIncome": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "otherIncomes": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "array",
+                "of": {
+                  "type": "string"
+                }
+              },
+              "optional": true
+            },
+            "otherSecondaryIncome": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "transport": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "array",
+                "of": {
+                  "type": "string"
+                }
+              },
+              "optional": true
+            },
+            "otherTransport": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "pastMemberCheck": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "boolean"
+              },
+              "optional": true
+            },
+            "pastMemberTime": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "interestedActivities": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "array",
+                "of": {
+                  "type": "string"
+                }
+              },
+              "optional": true
+            },
+            "activitiesComments": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "familyDynamics": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "demands": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "foodHelpReasons": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "array",
+                "of": {
+                  "type": "string"
+                }
+              },
+              "optional": true
+            },
+            "foodHelpReasonOther": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "SIPPECriterias": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "array",
+                "of": {
+                  "type": "string"
+                }
+              },
+              "optional": true
+            }
+          }
         },
         "optional": true
       },

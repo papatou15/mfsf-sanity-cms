@@ -1,5 +1,4 @@
 import { inscriptionType } from "./inscriptions"
-import { eventType } from "./event"
 import { activityType } from "./activity"
 import { form612 } from "./form612"
 import { formGarderie } from "./formGarderie"
@@ -30,7 +29,6 @@ import { conditionalField } from "./formMakerComponents/conditionalField"
 
 export const schemaTypes = [
     inscriptionType,
-    eventType,
     activityType,
     bannerType,
     form612,

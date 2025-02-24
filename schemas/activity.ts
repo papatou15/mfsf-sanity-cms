@@ -2,8 +2,7 @@ import { defineType, defineField } from "sanity";
 
 export const activityType = defineType({
     name: 'activity',
-    title: 'Activités',
-    description: 'Cette section est pour toutes activitées récurrentes (ex.: Cuisines collectives, halte garderie, etc.)',
+    title: 'Activités et Événements',
     type: 'document',
     fields: [
         defineField({
@@ -22,13 +21,28 @@ export const activityType = defineType({
                     fields: [
                         defineField({
                             name: 'date',
-                            title: `Date de l'activité`,
+                            title: `Date`,
                             type: 'date',
                         }),
                         defineField({
                             name: 'inscriptionOuverte',
                             title: 'Inscription ouverte?',
                             type: 'boolean',
+                            options: {
+                                layout: 'checkbox'
+                            },
+                            initialValue: false
+                        }),
+                        defineField({
+                            name: 'openDate',
+                            title: "Date d'ouverture des inscriptions",
+                            type: 'datetime'
+                        }),
+                        defineField({
+                            name: 'isVisible',
+                            title: 'Visible?',
+                            type: 'boolean',
+                            description: "Rends la date visible dans le champ d'inscription sur le site web",
                             options: {
                                 layout: 'checkbox'
                             },

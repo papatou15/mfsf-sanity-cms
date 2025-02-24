@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import SelectDateField from "./components/SelectDateField";
 
 export const formulaireMaker = defineType({
     name: 'formulaires',
@@ -62,6 +63,15 @@ export const formulaireMaker = defineType({
                             title: "Activité/Service/Événement (si applicable)",
                         }),
                         defineField({
+                            name: 'selectedDate',
+                            title: 'Date',
+                            type: 'string',
+                            hidden: ({parent}) => !parent?.activity,
+                            components: {
+                                input: SelectDateField
+                            }
+                          }),
+                        defineField({
                             name: "answers",
                             type: "array",
                             title: "Réponses",
@@ -82,13 +92,13 @@ export const formulaireMaker = defineType({
                             userName: "user.nom",
                             userFamilyName: "user.nom_famille",
                             activityTitle: "activity.nom",
-                            activityDate: "activity.dates.0.date",
+                            activityDate: "selectedDate",
                             submittedAt: "submittedAt"
                         },
                         prepare({ userName, userFamilyName, activityTitle, activityDate, submittedAt }) {
                             return {
                                 title: `${`${userName} ${userFamilyName}` || "Membre inconnu"}`,
-                                subtitle: `${activityTitle || "Pas d'activité"} - ${activityDate ? new Date(activityDate).toLocaleDateString() : "Pas de date"
+                                subtitle: `${activityTitle || "Pas d'activité"} - ${activityDate ? activityDate : "Pas de date"
                                     }`,
                                 description: `Envoyé à: ${submittedAt ? new Date(submittedAt).toLocaleDateString() : "Inconnu"
                                     }`

@@ -875,13 +875,14 @@ export type Inscription = {
     date_naissance?: string
     langue_principale?: string
     langues_secondaires?: Array<string>
-    familial_status?: 'celibataire' | 'couple' | 'marie' | 'veuf' | 'no_answer'
+    familial_status?: 'celibataire' | 'couple' | 'marie' | 'veuf' | 'conjoint' | 'no_answer'
+    scolarity?: 'Primaire' | 'Secondaire' | 'C\xE9gep' | 'DEP' | 'Universit\xE9'
     adhesionTime?: string
     paidTime?: string
     paidMethod?: 'monnaie' | 'credit' | 'debit' | 'free'
     renewTime?: string
     transactionId?: string
-    family_members?: Array<{
+    family_members_old?: Array<{
       nom?: string
       nom_famille?: string
       age?: string
@@ -906,6 +907,76 @@ export type Inscription = {
       _type: 'family_member'
       _key: string
     }>
+    family_members?: {
+      conjoint?: {
+        nom?: string
+        nom_famille?: string
+        age?: string
+        phone?: Array<{
+          phone_type?: 'home' | 'cell' | 'work' | 'other'
+          phone_no?: string
+          _type: 'phone_form'
+          _key: string
+        }>
+        genre_check?: {
+          genre?: 'homme' | 'femme' | 'autre' | 'no_answer'
+          other_genre?: string
+        }
+        scolarity?: 'Primaire' | 'Secondaire' | 'C\xE9gep' | 'DEP' | 'Universit\xE9'
+        occupation?:
+          | 'full_time'
+          | 'half-time'
+          | 'at_home'
+          | 'autonome'
+          | 'etudiant'
+          | 'retraite'
+          | 'no_answer'
+      }
+      childrenUnder18?: Array<{
+        nom?: string
+        nom_famille?: string
+        age?: string
+        genre_check?: {
+          genre?: 'homme' | 'femme' | 'autre' | 'no_answer'
+          other_genre?: string
+        }
+        familyLink?: 'fils' | 'fille' | 'neveu' | 'niece' | 'no_answer'
+        _type: 'children'
+        _key: string
+      }>
+      childrenOver18?: Array<{
+        nom?: string
+        nom_famille?: string
+        age?: string
+        genre_check?: {
+          genre?: 'homme' | 'femme' | 'autre' | 'no_answer'
+          other_genre?: string
+        }
+        familyLink?: 'fils' | 'fille' | 'neveu' | 'niece' | 'no_answer'
+        school?: string
+        _type: 'child'
+        _key: string
+      }>
+      handicappedMemberCheck?: boolean
+      handicappedMemberSection?: {
+        functionnal?: boolean
+        handicappedMember?: {
+          nom?: string
+          nom_famille?: string
+          age?: string
+          genre_check?: {
+            genre?: 'homme' | 'femme' | 'autre' | 'no_answer'
+            other_genre?: string
+          }
+          diagnostic?: string
+        }
+        helperCheck?: boolean
+        helper?: {
+          nom?: string
+          nom_famille?: string
+        }
+      }
+    }
     immediate_family?: number
     revenus?: '<10k' | '10k-20k' | '20k-30k' | '30k-40k' | '40k-50k' | '>50k' | 'no_answer'
   }
@@ -926,8 +997,54 @@ export type Inscription = {
     | 'facebook'
     | 'membre'
     | 'famille'
+    | 'event'
+    | 'pastMember'
     | 'other'
     | 'nePasRepondre'
+  moreInfo?: {
+    livingPlace?: {
+      habitation?: boolean
+      otherPlace?: string
+      howLong?: string
+    }
+    immigration?: boolean
+    immigrationSection?: {
+      immigrationTime?: string
+      immigrationIssuesCheck?: boolean
+      immigrationIssues?: string
+      immigrationStatus?: string
+      demarche?: string
+    }
+    principalIncome?:
+      | 'Emplois'
+      | 'Assurance salaire (priv\xE9e)'
+      | 'R\xE9gime de retraite'
+      | 'Pr\xEAts et bourse'
+      | 'Ch\xF4mage'
+      | 'CNESST'
+      | 'SAAQ'
+      | 'Pension de retraite'
+      | 'Aide financi\xE8re de dernier recours (aide sociale)'
+      | 'Pension de veuve'
+      | 'Allocations familiales'
+      | 'Pension alimentaire'
+      | 'Allocation au logement'
+      | 'Autre'
+    otherPrincipalIncome?: string
+    otherIncomes?: Array<string>
+    otherSecondaryIncome?: string
+    transport?: Array<string>
+    otherTransport?: string
+    pastMemberCheck?: boolean
+    pastMemberTime?: string
+    interestedActivities?: Array<string>
+    activitiesComments?: string
+    familyDynamics?: string
+    demands?: string
+    foodHelpReasons?: Array<string>
+    foodHelpReasonOther?: string
+    SIPPECriterias?: Array<string>
+  }
   formSubmissions?: Array<{
     _ref: string
     _type: 'reference'

@@ -23,7 +23,6 @@ export default (S: StructureBuilder) =>
             .title('Activités et Événements')
             .items([
               S.documentTypeListItem('activity').title('Activités').icon(ComposeIcon),
-              S.documentTypeListItem('event').title('Événements').icon(CalendarIcon),
             ])
         ),
 
