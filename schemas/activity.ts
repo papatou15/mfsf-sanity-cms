@@ -39,10 +39,10 @@ export const activityType = defineType({
                             title: 'Inscriptions',
                             type: 'array',
                             of: [
-                                defineField({
+                                {
                                     type: "reference",
                                     to: [{ type: "inscription" }]
-                                })
+                                }
                             ]
                         })
                     ],

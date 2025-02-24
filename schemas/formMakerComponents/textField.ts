@@ -16,6 +16,11 @@ export const textField = defineType({
         title: "Valeur par défaut",
       }),
       defineField({
+        name: "multiSelect",
+        type: "boolean",
+        title: "Accepte multiples réponses?",
+      }),
+      defineField({
         name: "required",
         type: "boolean",
         title: "Requis?",

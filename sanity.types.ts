@@ -68,6 +68,80 @@ export type Geopoint = {
   alt?: number
 }
 
+export type ConditionalField = {
+  _type: 'conditionalField'
+  label?: string
+  triggerValue?: string
+  options?: Array<string>
+  revealedFields?: Array<
+    | ({
+        _key: string
+      } & LargeTitle)
+    | ({
+        _key: string
+      } & MediumTitle)
+    | ({
+        _key: string
+      } & SmallTitle)
+    | ({
+        _key: string
+      } & Button)
+    | ({
+        _key: string
+      } & TextField)
+    | ({
+        _key: string
+      } & CheckboxField)
+    | ({
+        _key: string
+      } & RadioField)
+    | ({
+        _key: string
+      } & DropdownField)
+    | ({
+        _key: string
+      } & DateField)
+    | ({
+        _key: string
+      } & ConditionalField)
+  >
+}
+
+export type DateField = {
+  _type: 'dateField'
+  label?: string
+  required?: boolean
+}
+
+export type RadioField = {
+  _type: 'radioField'
+  label?: string
+  options?: Array<string>
+  required?: boolean
+}
+
+export type DropdownField = {
+  _type: 'dropdownField'
+  label?: string
+  options?: Array<string>
+  required?: boolean
+}
+
+export type TextField = {
+  _type: 'textField'
+  label?: string
+  placeholder?: string
+  multiSelect?: boolean
+  required?: boolean
+}
+
+export type CheckboxField = {
+  _type: 'checkboxField'
+  label?: string
+  options?: Array<string>
+  required?: boolean
+}
+
 export type Contact = {
   _id: string
   _type: 'contact'
@@ -453,39 +527,60 @@ export type Formulaires = {
   _updatedAt: string
   _rev: string
   formTitle?: string
-  form?: Array<{
-    fields?:
-      | 'h1Title'
-      | 'h2Title'
-      | 'h3Title'
-      | 'h4Title'
-      | 'h5Title'
-      | 'h6Title'
-      | 'h7Title'
-      | 'stringInput'
-      | 'richTextInput'
-    titleStringField?: string
-    stringField?: string
-    richTextField?: Array<{
-      children?: Array<{
-        marks?: Array<string>
-        text?: string
-        _type: 'span'
+  formDesc?: string
+  sections?: Array<
+    | ({
         _key: string
-      }>
-      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-      listItem?: 'bullet' | 'number'
-      markDefs?: Array<{
-        href?: string
-        _type: 'link'
+      } & LargeTitle)
+    | ({
         _key: string
-      }>
-      level?: number
-      _type: 'block'
+      } & MediumTitle)
+    | ({
+        _key: string
+      } & SmallTitle)
+    | ({
+        _key: string
+      } & Button)
+    | ({
+        _key: string
+      } & TextField)
+    | ({
+        _key: string
+      } & CheckboxField)
+    | ({
+        _key: string
+      } & RadioField)
+    | ({
+        _key: string
+      } & DropdownField)
+    | ({
+        _key: string
+      } & DateField)
+    | ({
+        _key: string
+      } & ConditionalField)
+  >
+  submissions?: Array<{
+    submittedAt?: string
+    user?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'inscription'
+    }
+    activity?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'activity'
+    }
+    answers?: Array<{
+      question?: string
+      response?: string
+      _type: 'answer'
       _key: string
     }>
-    fieldValue?: Array<string>
-    _type: 'fieldSelector'
+    _type: 'submission'
     _key: string
   }>
 }
@@ -833,6 +928,13 @@ export type Inscription = {
     | 'famille'
     | 'other'
     | 'nePasRepondre'
+  formSubmissions?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'formulaires'
+  }>
   enrolledActivities?: string
   enrolledEvents?: string
   notes?: Array<{
@@ -909,6 +1011,12 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | ConditionalField
+  | DateField
+  | RadioField
+  | DropdownField
+  | TextField
+  | CheckboxField
   | Contact
   | TextOnPicture
   | Carousel

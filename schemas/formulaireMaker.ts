@@ -29,7 +29,8 @@ export const formulaireMaker = defineType({
                 { type: "checkboxField" },
                 { type: "radioField" },
                 { type: "dropdownField" },
-                { type: 'dateField'}
+                { type: 'dateField' },
+                { type: 'conditionalField' }
             ]
         }),
         defineField({
@@ -84,15 +85,13 @@ export const formulaireMaker = defineType({
                             activityDate: "activity.dates.0.date",
                             submittedAt: "submittedAt"
                         },
-                        prepare({userName, userFamilyName, activityTitle, activityDate, submittedAt}) {
-                            return{
+                        prepare({ userName, userFamilyName, activityTitle, activityDate, submittedAt }) {
+                            return {
                                 title: `${`${userName} ${userFamilyName}` || "Membre inconnu"}`,
-                                subtitle: `${activityTitle || "Pas d'activité"} - ${
-                                    activityDate ? new Date(activityDate).toLocaleDateString() : "Pas de date"
-                                }`,
-                                description: `Envoyé à: ${
-                                    submittedAt ? new Date(submittedAt).toLocaleDateString() : "Inconnu"
-                                }`
+                                subtitle: `${activityTitle || "Pas d'activité"} - ${activityDate ? new Date(activityDate).toLocaleDateString() : "Pas de date"
+                                    }`,
+                                description: `Envoyé à: ${submittedAt ? new Date(submittedAt).toLocaleDateString() : "Inconnu"
+                                    }`
                             }
                         }
                     }
