@@ -30,6 +30,7 @@ import { formButton } from "./pageMakerComponents/formButton"
 import { teamMember } from "./teamMember"
 import { meetingNotes } from "./meetingNotes"
 import { adminTeamMember } from "./adminTeamMember"
+import { missionImage } from "./missionImage"
 
 export const schemaTypes = [
     inscriptionType,
@@ -63,5 +64,6 @@ export const schemaTypes = [
     formButton,
     teamMember,
     meetingNotes,
-    adminTeamMember
+    adminTeamMember,
+    missionImage
 ]

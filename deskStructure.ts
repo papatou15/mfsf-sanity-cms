@@ -93,6 +93,10 @@ export default (S: StructureBuilder) =>
               S.listItem()
                 .title('Membres du conseil d\'administration')
                 .child(S.editor().schemaType('adminTeamMember').documentId('adminTeamMember')),
+
+              S.listItem()
+                .title('Image de la mission')
+                .child(S.editor().schemaType('missionImage').documentId('missionImage')),
             ])
         ),
     ]);
