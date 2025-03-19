@@ -31,7 +31,7 @@ export const formulaireMaker = defineType({
                 { type: "radioField" },
                 { type: "dropdownField" },
                 { type: 'dateField' },
-                { type: 'conditionalField' }
+                { type: 'conditionalField' },
             ]
         }),
         defineField({
@@ -66,11 +66,11 @@ export const formulaireMaker = defineType({
                             name: 'selectedDate',
                             title: 'Date',
                             type: 'string',
-                            hidden: ({parent}) => !parent?.activity,
+                            hidden: ({ parent }) => !parent?.activity,
                             components: {
                                 input: SelectDateField
                             }
-                          }),
+                        }),
                         defineField({
                             name: "answers",
                             type: "array",

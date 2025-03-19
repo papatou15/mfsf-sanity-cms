@@ -37,13 +37,17 @@ export const textOnPicture = defineType({
             title: 'Couleur de fond',
             options: {
                 colorList: [
-                    '#8800C8',
-                    '#E2B41B',
-                    '#FFC300',
-                    "#20453E",
+                    '#BBD143',
+                    '#95AA26',
+                    '#EA5045',
+                    '#9F4E48',
+                    '#F3943E',
+                    '#CD9054',
+                    "#00AEC3",
+                    "#2C939F",
                     "#e5e5e5",
                     "#000000",
-                    "F9EFE3"
+                    "#FFF8DD"
                 ]
             }
         })

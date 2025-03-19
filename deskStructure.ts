@@ -11,6 +11,10 @@ export default (S: StructureBuilder) =>
         .icon(UsersIcon)
         .schemaType('inscription')
         .child(S.documentTypeList('inscription')),
+      S.listItem()
+        .title('Notes de rencontres')
+        .schemaType('meetingNotes')
+        .child(S.documentTypeList('meetingNotes')),
 
       S.divider(),
 
@@ -36,8 +40,6 @@ export default (S: StructureBuilder) =>
           S.list()
             .title('Formulaires')
             .items([
-              S.documentTypeListItem('form6-12').title('Formulaire 6-12 ans').icon(DocumentIcon),
-              S.documentTypeListItem('formGarderie').title('Formulaire Garderie').icon(DocumentIcon),
               S.documentTypeListItem('contactForm').title('Formulaire de Contact').icon(EnvelopeIcon),
               S.documentTypeListItem('formulaires').title('Formulaires')
             ])
@@ -82,7 +84,15 @@ export default (S: StructureBuilder) =>
 
               S.listItem()
                 .title('Bannière')
-                .child(S.editor().schemaType('banner').documentId('banner'))
+                .child(S.editor().schemaType('banner').documentId('banner')),
+
+              S.listItem()
+                .title('Membres de l\'équipe')
+                .child(S.editor().schemaType('teamMember').documentId('teamMember')),
+
+              S.listItem()
+                .title('Membres du conseil d\'administration')
+                .child(S.editor().schemaType('adminTeamMember').documentId('adminTeamMember')),
             ])
         ),
     ]);

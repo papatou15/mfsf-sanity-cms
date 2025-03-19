@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { StringInputProps, useClient, useFormValue, set, unset } from 'sanity'
-import { Card, Label, Select, Stack, Text } from '@sanity/ui'
+import { Card, Select, Stack, Text } from '@sanity/ui'
 
 const SelectDateField: React.FC<StringInputProps> = ({ value, onChange, elementProps }) => {
     const client = useClient()
     const [activityDates, setActivityDates] = useState<{ date: string }[]>([])
 
-    const activityRef = useFormValue(['submissions', 0, 'activity', '_ref']) as string | undefined
+    const activityRef = useFormValue(['submissions', 0, 'activity', '_ref'])
 
     useEffect(() => {
         const fetchDates = async () => {

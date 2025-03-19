@@ -36,6 +36,7 @@ export const pageMaker = defineType({
                 { type: 'button' },
                 { type: 'carousel' },
                 { type: 'textOnPicture' },
+                { type: 'formButton' }
             ],
         },
     ],

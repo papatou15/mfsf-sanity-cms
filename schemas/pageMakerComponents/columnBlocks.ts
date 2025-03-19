@@ -72,25 +72,30 @@ export const columnBlock = defineType({
         { type: 'button' },
         { type: 'image' },
         { type: 'carousel' },
-        { type: 'textOnPicture' }
+        { type: 'textOnPicture' },
+        { type: 'formButton' }
       ],
-      hidden: ({ parent }) => parent.layout !== 'three', // Hidden if layout is not three columns
+      hidden: ({ parent }) => parent.layout !== 'three',
     },
     defineField({
       name: 'bgColor',
       type: 'color',
       title: 'Couleur de fond',
       options: {
-          colorList: [
-              '#8800C8',
-              '#E2B41B',
-              '#FFC300',
-              "#20453E",
-              "#e5e5e5",
-              "#000000",
-              "F9EFE3"
-          ]
-      }
+        colorList: [
+            '#BBD143',
+            '#95AA26',
+            '#EA5045',
+            '#9F4E48',
+            '#F3943E',
+            '#CD9054',
+            "#00AEC3",
+            "#2C939F",
+            "#e5e5e5",
+            "#000000",
+            "#FFF8DD"
+        ]
+    }
   })
   ],
   preview: {

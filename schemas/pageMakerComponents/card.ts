@@ -43,5 +43,25 @@ export const card = defineType({
                 layout: 'radio',
             },
         }),
+        defineField({
+            name: 'color',
+            type: 'color',
+            title: 'Couleur de fond/bordure',
+            options: {
+                colorList: [
+                    '#BBD143',
+                    '#95AA26',
+                    '#EA5045',
+                    '#9F4E48',
+                    '#F3943E',
+                    '#CD9054',
+                    "#00AEC3",
+                    "#2C939F",
+                    "#e5e5e5",
+                    "#000000",
+                    "#FFF8DD"
+                ]
+            }
+        })
     ]
 })

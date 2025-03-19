@@ -26,6 +26,10 @@ import { radioField } from "./formMakerComponents/radioField"
 import { dropdownField } from "./formMakerComponents/dropdownField"
 import { dateField } from "./formMakerComponents/datePicker"
 import { conditionalField } from "./formMakerComponents/conditionalField"
+import { formButton } from "./pageMakerComponents/formButton"
+import { teamMember } from "./teamMember"
+import { meetingNotes } from "./meetingNotes"
+import { adminTeamMember } from "./adminTeamMember"
 
 export const schemaTypes = [
     inscriptionType,
@@ -55,5 +59,9 @@ export const schemaTypes = [
     dropdownField,
     radioField,
     dateField,
-    conditionalField
+    conditionalField,
+    formButton,
+    teamMember,
+    meetingNotes,
+    adminTeamMember
 ]

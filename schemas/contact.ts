@@ -19,6 +19,18 @@ export const contact = defineType({
             name: 'email',
             type: 'string',
             title: 'Courriel'
+        }),
+        defineField({
+            name: 'headerLogo',
+            type: 'image',
+            title: 'Logo',
+            description: 'Logo utilisé dans l\'en-tête'
+        }),
+        defineField({
+            name: 'footerLogo',
+            type: 'image',
+            title: 'Logo',
+            description: 'Logo utilisé dans le pied de page'
         })
     ]
 })
