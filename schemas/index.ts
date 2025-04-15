@@ -31,6 +31,7 @@ import { teamMember } from "./teamMember"
 import { meetingNotes } from "./meetingNotes"
 import { adminTeamMember } from "./adminTeamMember"
 import { missionImage } from "./missionImage"
+import { temoignages } from "./temoignages"
 
 export const schemaTypes = [
     inscriptionType,
@@ -65,5 +66,6 @@ export const schemaTypes = [
     teamMember,
     meetingNotes,
     adminTeamMember,
-    missionImage
+    missionImage,
+    temoignages
 ]

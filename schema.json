@@ -326,6 +326,87 @@
     }
   },
   {
+    "name": "temoignages",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "temoignages"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "temoignages": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "name": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "text": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "_type": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string",
+                  "value": "temoignage"
+                }
+              }
+            },
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "optional": true
+      }
+    }
+  },
+  {
     "name": "missionImage",
     "type": "document",
     "attributes": {
@@ -419,6 +500,13 @@
               }
             }
           }
+        },
+        "optional": true
+      },
+      "missionText": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       }
@@ -2055,6 +2143,59 @@
                 "value": "smallCard"
               }
             ]
+          },
+          "optional": true
+        },
+        "link": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "object",
+            "attributes": {
+              "isPage": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "boolean"
+                },
+                "optional": true
+              },
+              "url": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "page": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "object",
+                  "attributes": {
+                    "_ref": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "_type": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string",
+                        "value": "reference"
+                      }
+                    },
+                    "_weak": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "boolean"
+                      },
+                      "optional": true
+                    }
+                  },
+                  "dereferencesTo": "pageMaker"
+                },
+                "optional": true
+              }
+            }
           },
           "optional": true
         },
@@ -5572,145 +5713,6 @@
     }
   },
   {
-    "name": "activity",
-    "type": "document",
-    "attributes": {
-      "_id": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_type": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string",
-          "value": "activity"
-        }
-      },
-      "_createdAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_updatedAt": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "_rev": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        }
-      },
-      "nom": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "dates": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "array",
-          "of": {
-            "type": "object",
-            "attributes": {
-              "date": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
-                },
-                "optional": true
-              },
-              "inscriptionOuverte": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "boolean"
-                },
-                "optional": true
-              },
-              "openDate": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
-                },
-                "optional": true
-              },
-              "isVisible": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "boolean"
-                },
-                "optional": true
-              },
-              "members": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "array",
-                  "of": {
-                    "type": "object",
-                    "attributes": {
-                      "_ref": {
-                        "type": "objectAttribute",
-                        "value": {
-                          "type": "string"
-                        }
-                      },
-                      "_type": {
-                        "type": "objectAttribute",
-                        "value": {
-                          "type": "string",
-                          "value": "reference"
-                        }
-                      },
-                      "_weak": {
-                        "type": "objectAttribute",
-                        "value": {
-                          "type": "boolean"
-                        },
-                        "optional": true
-                      }
-                    },
-                    "dereferencesTo": "inscription",
-                    "rest": {
-                      "type": "object",
-                      "attributes": {
-                        "_key": {
-                          "type": "objectAttribute",
-                          "value": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "optional": true
-              }
-            },
-            "rest": {
-              "type": "object",
-              "attributes": {
-                "_key": {
-                  "type": "objectAttribute",
-                  "value": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "optional": true
-      }
-    }
-  },
-  {
     "name": "inscription",
     "type": "document",
     "attributes": {
@@ -5753,6 +5755,13 @@
         "optional": true
       },
       "nom_famille": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "date_naissance": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
@@ -5847,129 +5856,6 @@
         "value": {
           "type": "object",
           "attributes": {
-            "occupation": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "union",
-                "of": [
-                  {
-                    "type": "string",
-                    "value": "full_time"
-                  },
-                  {
-                    "type": "string",
-                    "value": "half-time"
-                  },
-                  {
-                    "type": "string",
-                    "value": "at_home"
-                  },
-                  {
-                    "type": "string",
-                    "value": "autonome"
-                  },
-                  {
-                    "type": "string",
-                    "value": "etudiant"
-                  },
-                  {
-                    "type": "string",
-                    "value": "retraite"
-                  },
-                  {
-                    "type": "string",
-                    "value": "no_answer"
-                  }
-                ]
-              },
-              "optional": true
-            },
-            "date_naissance": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
-            },
-            "langue_principale": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
-            },
-            "langues_secondaires": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "array",
-                "of": {
-                  "type": "string"
-                }
-              },
-              "optional": true
-            },
-            "familial_status": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "union",
-                "of": [
-                  {
-                    "type": "string",
-                    "value": "celibataire"
-                  },
-                  {
-                    "type": "string",
-                    "value": "couple"
-                  },
-                  {
-                    "type": "string",
-                    "value": "marie"
-                  },
-                  {
-                    "type": "string",
-                    "value": "veuf"
-                  },
-                  {
-                    "type": "string",
-                    "value": "conjoint"
-                  },
-                  {
-                    "type": "string",
-                    "value": "no_answer"
-                  }
-                ]
-              },
-              "optional": true
-            },
-            "scolarity": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "union",
-                "of": [
-                  {
-                    "type": "string",
-                    "value": "Primaire"
-                  },
-                  {
-                    "type": "string",
-                    "value": "Secondaire"
-                  },
-                  {
-                    "type": "string",
-                    "value": "Cégep"
-                  },
-                  {
-                    "type": "string",
-                    "value": "DEP"
-                  },
-                  {
-                    "type": "string",
-                    "value": "Université"
-                  }
-                ]
-              },
-              "optional": true
-            },
             "adhesionTime": {
               "type": "objectAttribute",
               "value": {
@@ -6020,6 +5906,157 @@
               "type": "objectAttribute",
               "value": {
                 "type": "string"
+              },
+              "optional": true
+            },
+            "langue_principale": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "langues_secondaires": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "array",
+                "of": {
+                  "type": "string"
+                }
+              },
+              "optional": true
+            },
+            "occupation": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "union",
+                "of": [
+                  {
+                    "type": "string",
+                    "value": "full_time"
+                  },
+                  {
+                    "type": "string",
+                    "value": "half-time"
+                  },
+                  {
+                    "type": "string",
+                    "value": "at_home"
+                  },
+                  {
+                    "type": "string",
+                    "value": "autonome"
+                  },
+                  {
+                    "type": "string",
+                    "value": "etudiant"
+                  },
+                  {
+                    "type": "string",
+                    "value": "retraite"
+                  },
+                  {
+                    "type": "string",
+                    "value": "no_answer"
+                  }
+                ]
+              },
+              "optional": true
+            },
+            "scolarity": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "union",
+                "of": [
+                  {
+                    "type": "string",
+                    "value": "Primaire"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Secondaire"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Cégep - Attestation d'études collégiales"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Cégep - Technique"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Cégep - Pré-universitaire"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Diplôme d'études professionnelles"
+                  },
+                  {
+                    "type": "string",
+                    "value": "Université"
+                  }
+                ]
+              },
+              "optional": true
+            },
+            "diplomaCheck": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "object",
+                "attributes": {
+                  "diplomaRecognizedCheck": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  },
+                  "diplomaRecognizedNotes": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  }
+                }
+              },
+              "optional": true
+            },
+            "revenus": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "union",
+                "of": [
+                  {
+                    "type": "string",
+                    "value": "<10k"
+                  },
+                  {
+                    "type": "string",
+                    "value": "10k-20k"
+                  },
+                  {
+                    "type": "string",
+                    "value": "20k-30k"
+                  },
+                  {
+                    "type": "string",
+                    "value": "30k-40k"
+                  },
+                  {
+                    "type": "string",
+                    "value": "40k-50k"
+                  },
+                  {
+                    "type": "string",
+                    "value": ">50k"
+                  },
+                  {
+                    "type": "string",
+                    "value": "no_answer"
+                  }
+                ]
               },
               "optional": true
             },
@@ -6173,6 +6210,43 @@
                     }
                   }
                 }
+              },
+              "optional": true
+            },
+            "familial_status": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "union",
+                "of": [
+                  {
+                    "type": "string",
+                    "value": "celibataire"
+                  },
+                  {
+                    "type": "string",
+                    "value": "celibataire_enfant"
+                  },
+                  {
+                    "type": "string",
+                    "value": "couple"
+                  },
+                  {
+                    "type": "string",
+                    "value": "marie"
+                  },
+                  {
+                    "type": "string",
+                    "value": "veuf"
+                  },
+                  {
+                    "type": "string",
+                    "value": "conjoint"
+                  },
+                  {
+                    "type": "string",
+                    "value": "no_answer"
+                  }
+                ]
               },
               "optional": true
             },
@@ -6478,6 +6552,42 @@
                             },
                             "optional": true
                           },
+                          "guardianship": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "union",
+                              "of": [
+                                {
+                                  "type": "string",
+                                  "value": "full_time"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "shared"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "weekend"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "no_guardianship"
+                                },
+                                {
+                                  "type": "string",
+                                  "value": "other"
+                                }
+                              ]
+                            },
+                            "optional": true
+                          },
+                          "guardianshipNotes": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            },
+                            "optional": true
+                          },
                           "_type": {
                             "type": "objectAttribute",
                             "value": {
@@ -6770,43 +6880,6 @@
                 "type": "number"
               },
               "optional": true
-            },
-            "revenus": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "union",
-                "of": [
-                  {
-                    "type": "string",
-                    "value": "<10k"
-                  },
-                  {
-                    "type": "string",
-                    "value": "10k-20k"
-                  },
-                  {
-                    "type": "string",
-                    "value": "20k-30k"
-                  },
-                  {
-                    "type": "string",
-                    "value": "30k-40k"
-                  },
-                  {
-                    "type": "string",
-                    "value": "40k-50k"
-                  },
-                  {
-                    "type": "string",
-                    "value": ">50k"
-                  },
-                  {
-                    "type": "string",
-                    "value": "no_answer"
-                  }
-                ]
-              },
-              "optional": true
             }
           }
         },
@@ -6925,6 +6998,14 @@
             },
             {
               "type": "string",
+              "value": "otherOrg"
+            },
+            {
+              "type": "string",
+              "value": "passant"
+            },
+            {
+              "type": "string",
               "value": "other"
             },
             {
@@ -6932,6 +7013,13 @@
               "value": "nePasRepondre"
             }
           ]
+        },
+        "optional": true
+      },
+      "connaissanceOther": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       },
@@ -7064,7 +7152,7 @@
                   },
                   {
                     "type": "string",
-                    "value": "Pension de veuve"
+                    "value": "Pension de veuf(ve)"
                   },
                   {
                     "type": "string",
@@ -7158,20 +7246,6 @@
               },
               "optional": true
             },
-            "familyDynamics": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
-            },
-            "demands": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
-            },
             "foodHelpReasons": {
               "type": "objectAttribute",
               "value": {
@@ -7254,10 +7328,63 @@
         },
         "optional": true
       },
-      "enrolledEvents": {
+      "linkedActivities": {
         "type": "objectAttribute",
         "value": {
-          "type": "string"
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "activityId": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "object",
+                  "attributes": {
+                    "_ref": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "_type": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string",
+                        "value": "reference"
+                      }
+                    },
+                    "_weak": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "boolean"
+                      },
+                      "optional": true
+                    }
+                  },
+                  "dereferencesTo": "activity"
+                },
+                "optional": true
+              },
+              "date": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              }
+            },
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
         },
         "optional": true
       },
@@ -7423,6 +7550,145 @@
                   "type": "string",
                   "value": "block"
                 }
+              }
+            },
+            "rest": {
+              "type": "object",
+              "attributes": {
+                "_key": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "optional": true
+      }
+    }
+  },
+  {
+    "name": "activity",
+    "type": "document",
+    "attributes": {
+      "_id": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_type": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string",
+          "value": "activity"
+        }
+      },
+      "_createdAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_updatedAt": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "_rev": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        }
+      },
+      "nom": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "dates": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "date": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "inscriptionOuverte": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "boolean"
+                },
+                "optional": true
+              },
+              "openDate": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
+              "isVisible": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "boolean"
+                },
+                "optional": true
+              },
+              "members": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "array",
+                  "of": {
+                    "type": "object",
+                    "attributes": {
+                      "_ref": {
+                        "type": "objectAttribute",
+                        "value": {
+                          "type": "string"
+                        }
+                      },
+                      "_type": {
+                        "type": "objectAttribute",
+                        "value": {
+                          "type": "string",
+                          "value": "reference"
+                        }
+                      },
+                      "_weak": {
+                        "type": "objectAttribute",
+                        "value": {
+                          "type": "boolean"
+                        },
+                        "optional": true
+                      }
+                    },
+                    "dereferencesTo": "inscription",
+                    "rest": {
+                      "type": "object",
+                      "attributes": {
+                        "_key": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "optional": true
               }
             },
             "rest": {

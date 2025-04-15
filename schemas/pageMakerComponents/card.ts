@@ -44,6 +44,35 @@ export const card = defineType({
             },
         }),
         defineField({
+            name: 'link',
+            title: 'Lien',
+            type: 'object',
+            fields: [
+                defineField({
+                    name: 'isPage',
+                    title: 'Page interne?',
+                    type: 'boolean',
+                    initialValue: false,
+                    options: {
+                        layout: 'checkbox',
+                    }
+                }),
+                defineField({
+                    name: 'url',
+                    title: 'URL',
+                    type: 'url',
+                    hidden: ({ parent }) => parent?.isPage === true
+                }),
+                defineField({
+                    name: 'page',
+                    title: 'Page interne',
+                    type: 'reference',
+                    to: [{ type: 'pageMaker' }],
+                    hidden: ({ parent }) => parent?.isPage === false
+                })
+            ]
+        }),
+        defineField({
             name: 'color',
             type: 'color',
             title: 'Couleur de fond/bordure',

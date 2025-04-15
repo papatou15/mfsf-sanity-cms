@@ -25,7 +25,7 @@
     "react-datepicker": "^8.1.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
-    "sanity": "^3.44.0",
+    "sanity": "^3.84.0",
     "sanity-plugin-media": "^2.2.5",
     "styled-components": "^6.0.7"
   },

@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { UserIcon, UsersIcon, TaskIcon } from "@sanity/icons";
+import { UserIcon, UsersIcon, TaskIcon, IceCreamIcon } from "@sanity/icons";
 import MemberActivitiesInput from "./components/MemberActivitiesInput";
 import MemberEventsInput from "./components/MemberEventsInput";
 import formatPhoneNumber from "./utils/formatPhoneNumber"
@@ -12,7 +12,9 @@ export const inscriptionType = defineType({
     groups: [
         { name: 'renseignements', title: 'Renseignements personnels', icon: UserIcon },
         { name: 'inscriptions', title: 'Inscriptions', icon: TaskIcon },
-        { name: 'otherInfos', title: 'Autres renseigments' }
+        { name: 'otherInfos', title: 'Autres renseigments' },
+        { name: 'isMember', title: 'Statut de membre' },
+        { name: 'denrees', title: 'Denrées alimentaires' },
     ],
     fields: [
         defineField({
@@ -28,6 +30,11 @@ export const inscriptionType = defineType({
             type: "string",
             group: 'renseignements',
             validation: (rule) => rule.required()
+        }),
+        defineField({
+            name: 'date_naissance',
+            title: 'Date de naissance',
+            type: 'date',
         }),
         defineField({
             name: 'zip_code',
@@ -85,6 +92,7 @@ export const inscriptionType = defineType({
             name: 'member_check',
             title: 'Membre?',
             type: 'boolean',
+            group: 'isMember',
             options: {
                 layout: 'checkbox'
             }
@@ -94,76 +102,8 @@ export const inscriptionType = defineType({
             title: 'Formulaire de membre',
             type: 'object',
             hidden: ({ parent }) => !parent.member_check,
+            group: 'isMember',
             fields: [
-                defineField({
-                    name: 'occupation',
-                    title: 'Occupation',
-                    type: 'string',
-                    options: {
-                        list: [
-                            { title: "Emploi temps plein", value: "full_time" },
-                            { title: "Emploi temps partiel", value: "half-time" },
-                            { title: "Sans emploi/Au foyer", value: "at_home" },
-                            { title: "Travailleur autonome", value: "autonome" },
-                            { title: "Aux études", value: "etudiant" },
-                            { title: "Retraité", value: "retraite" },
-                            { title: "Préfère ne pas répondre", value: "no_answer" }
-                        ]
-                    }
-                }),
-                defineField({
-                    name: 'date_naissance',
-                    title: 'Date de naissance',
-                    type: 'date',
-                }),
-                defineField({
-                    name: 'langue_principale',
-                    title: 'Langue principale parlée à la maison',
-                    type: 'string'
-                }),
-                defineField({
-                    name: 'langues_secondaires',
-                    title: 'Autres langues parlées',
-                    type: 'array',
-                    of: [defineField({ name: "langue", title: "Langue", type: 'string' })]
-                }),
-                defineField({
-                    name: 'familial_status',
-                    title: 'Statut familial',
-                    type: 'string',
-                    options: {
-                        list: [
-                            { title: 'Célibataire', value: 'celibataire' },
-                            { title: 'En couple', value: 'couple' },
-                            { title: 'Marié(e)', value: 'marie' },
-                            { title: 'Veuf(ve)', value: 'veuf' },
-                            { title: 'Conjoint de fait', value: 'conjoint' },
-                            { title: "Préfère ne pas répondre", value: "no_answer" }
-                        ]
-                    }
-                }),
-                defineField({
-                    name: 'scolarity',
-                    type: 'string',
-                    title: 'Niveau de scolarité complété',
-                    options: {
-                        list: [
-                            "Primaire",
-                            "Secondaire",
-                            "Cégep",
-                            "DEP",
-                            "Université"
-                        ]
-                    }
-                }),
-                // defineField({
-                //     name: 'paid_check',
-                //     title: 'Cotisation payée?',
-                //     type: 'boolean',
-                //     components: {
-                //         input: PaidBooleanInputWrapper
-                //     }
-                // }),
                 defineField({
                     name: 'adhesionTime',
                     type: 'date',
@@ -201,8 +141,91 @@ export const inscriptionType = defineType({
                     readOnly: true
                 }),
                 defineField({
+                    name: 'langue_principale',
+                    title: 'Langue principale parlée à la maison',
+                    type: 'string'
+                }),
+                defineField({
+                    name: 'langues_secondaires',
+                    title: 'Autres langues parlées',
+                    type: 'array',
+                    of: [defineField({ name: "langue", title: "Langue", type: 'string' })]
+                }),
+                defineField({
+                    name: 'occupation',
+                    title: 'Occupation',
+                    type: 'string',
+                    options: {
+                        list: [
+                            { title: "Emploi temps plein", value: "full_time" },
+                            { title: "Emploi temps partiel", value: "half-time" },
+                            { title: "Sans emploi/Au foyer", value: "at_home" },
+                            { title: "Travailleur autonome", value: "autonome" },
+                            { title: "Aux études", value: "etudiant" },
+                            { title: "Retraité", value: "retraite" },
+                            { title: "Préfère ne pas répondre", value: "no_answer" }
+                        ]
+                    }
+                }),
+                defineField({
+                    name: 'scolarity',
+                    type: 'string',
+                    title: 'Niveau de scolarité complété',
+                    options: {
+                        list: [
+                            "Primaire",
+                            "Secondaire",
+                            "Cégep - Attestation d'études collégiales",
+                            "Cégep - Technique",
+                            "Cégep - Pré-universitaire",
+                            "Diplôme d'études professionnelles",
+                            "Université"
+                        ]
+                    }
+                }),
+                defineField({
+                    name: 'diplomaCheck',
+                    title: 'Diplôme reconnu au Québec?',
+                    type: 'object',
+                    fields: [
+                        defineField({
+                            name: 'diplomaRecognizedCheck',
+                            title: 'Diplôme reconnu au Québec?',
+                            type: 'boolean',
+                            options: {
+                                layout: 'checkbox'
+                            },
+                            initialValue: false
+                        }),
+                        defineField({
+                            name: 'diplomaRecognizedNotes',
+                            title: 'Notes',
+                            type: 'text',
+                            hidden: ({ parent }) => parent?.diplomaRecognizedCheck === false,
+                            description: "Si le diplôme n'est pas reconnu au Québec, veuillez expliquer pourquoi.",
+                        }),
+                    ]
+                }),
+                defineField({
+                    name: 'revenus',
+                    title: 'Revenus familiaux',
+                    type: 'string',
+                    options: {
+                        list: [
+                            { title: `0 - 10'000$`, value: '<10k' },
+                            { title: `10'001$ - 20'000$`, value: '10k-20k' },
+                            { title: `20'001$ - 30'000$`, value: '20k-30k' },
+                            { title: `30'001$ - 40'000$`, value: '30k-40k' },
+                            { title: `40'001$ - 50'000$`, value: '40k-50k' },
+                            { title: `50'001 et +`, value: '>50k' },
+                            { title: "Préfère ne pas répondre", value: "no_answer" }
+                        ]
+                    }
+                }),
+                defineField({
                     name: 'family_members_old',
                     title: 'Autres membres de la famille (ancien)',
+                    description: "Ne pas utiliser cette section, utiliser la section 'Autres membres de la famille'\n Cette section sera enlevée dans une prochaine mise à jour",
                     type: 'array',
                     of: [
                         defineField({
@@ -263,6 +286,22 @@ export const inscriptionType = defineType({
                             }
                         })
                     ]
+                }),
+                defineField({
+                    name: 'familial_status',
+                    title: 'Statut familial',
+                    type: 'string',
+                    options: {
+                        list: [
+                            { title: 'Célibataire sans enfant(s)', value: 'celibataire' },
+                            { title: 'Célibataire avec enfant(s)', value: 'celibataire_enfant' },
+                            { title: 'En couple', value: 'couple' },
+                            { title: 'Marié(e)', value: 'marie' },
+                            { title: 'Veuf(ve)', value: 'veuf' },
+                            { title: 'Conjoint de fait', value: 'conjoint' },
+                            { title: "Préfère ne pas répondre", value: "no_answer" }
+                        ]
+                    }
                 }),
                 defineField({
                     name: 'family_members',
@@ -414,7 +453,27 @@ export const inscriptionType = defineType({
                                                     { title: "Préfère ne pas répondre", value: "no_answer" }
                                                 ]
                                             }
-                                        }
+                                        },
+                                        defineField({
+                                            name: 'guardianship',
+                                            type: 'string',
+                                            title: 'Garde de l\'enfant',
+                                            options: {
+                                                list: [
+                                                    { title: 'Garde à temps plein', value: 'full_time' },
+                                                    { title: 'Garde partagée', value: 'shared' },
+                                                    { title: 'Une fin de semaine sur deux', value: 'weekend' },
+                                                    { title: 'Pas de garde', value: 'no_guardianship' },
+                                                    { title: 'Autre', value: 'other' }
+                                                ]
+                                            }
+                                        }),
+                                        defineField({
+                                            name: 'guardianshipNotes',
+                                            type: 'text',
+                                            title: 'Notes',
+                                            hidden: ({ parent }) => parent?.guardianship !== 'other',
+                                        })
                                     ],
                                     preview: {
                                         select: {
@@ -508,7 +567,7 @@ export const inscriptionType = defineType({
                             name: 'handicappedMemberSection',
                             type: 'object',
                             title: 'Section membre handicappé',
-                            hidden: ({parent}) => parent?.handicappedMemberCheck === false,
+                            hidden: ({ parent }) => parent?.handicappedMemberCheck === false,
                             fields: [
                                 defineField({
                                     name: 'functionnal',
@@ -560,7 +619,7 @@ export const inscriptionType = defineType({
                                     type: 'object',
                                     name: 'helper',
                                     title: 'Renseignements sur la personne',
-                                    hidden: ({parent}) => parent?.helperCheck === false,
+                                    hidden: ({ parent }) => parent?.helperCheck === false,
                                     fields: [
                                         { name: 'nom', title: 'Prénom', type: 'string' },
                                         { name: 'nom_famille', title: 'Nom de famille', type: 'string' },
@@ -574,22 +633,6 @@ export const inscriptionType = defineType({
                     name: 'immediate_family',
                     type: 'number',
                     title: 'Nombre de personnes composant la famille immédiate'
-                }),
-                defineField({
-                    name: 'revenus',
-                    title: 'Revenus familiaux',
-                    type: 'string',
-                    options: {
-                        list: [
-                            { title: `0 - 10'000$`, value: '<10k' },
-                            { title: `10'001$ - 20'000$`, value: '10k-20k' },
-                            { title: `20'001$ - 30'000$`, value: '20k-30k' },
-                            { title: `30'001$ - 40'000$`, value: '30k-40k' },
-                            { title: `40'001$ - 50'000$`, value: '40k-50k' },
-                            { title: `50'001 et +`, value: '>50k' },
-                            { title: "Préfère ne pas répondre", value: "no_answer" }
-                        ]
-                    }
                 }),
             ]
         }),
@@ -707,10 +750,18 @@ export const inscriptionType = defineType({
                     { title: 'Famille', value: 'famille' },
                     { title: "Lors d'un événement de quartier", value: 'event' },
                     { title: 'Ancien membre', value: 'pastMember' },
+                    { title: 'Autre organisme', value: 'otherOrg' },
+                    { title: 'Passé devant', value: 'passant' },
                     { title: 'Autre', value: 'other' },
                     { title: 'Préfère ne pas répondre', value: 'nePasRepondre' }
                 ]
             }
+        }),
+        defineField({
+            name: 'connaissanceOther',
+            title: 'Connaissance: autre',
+            type: 'string',
+            hidden: ({ parent }) => parent?.connaissance !== 'other'
         }),
         defineField({
             name: 'moreInfo',
@@ -806,7 +857,7 @@ export const inscriptionType = defineType({
                             'SAAQ',
                             'Pension de retraite',
                             'Aide financière de dernier recours (aide sociale)',
-                            'Pension de veuve',
+                            'Pension de veuf(ve)',
                             'Allocations familiales',
                             'Pension alimentaire',
                             'Allocation au logement',
@@ -836,7 +887,7 @@ export const inscriptionType = defineType({
                             'SAAQ',
                             'Pension de retraite',
                             "Aide financière de dernier recours (aide sociale)",
-                            'Pension de veuve',
+                            'Pension de veuf(ve)',
                             'Allocations familiales',
                             'Pension alimentaire',
                             'Allocation au logement',
@@ -916,16 +967,6 @@ export const inscriptionType = defineType({
                     title: 'Commentaires'
                 }),
                 defineField({
-                    name: 'familyDynamics',
-                    type: 'text',
-                    title: 'Dynamique familiale'
-                }),
-                defineField({
-                    name: 'demands',
-                    type: 'text',
-                    title: 'Demandes'
-                }),
-                defineField({
                     name: 'foodHelpReasons',
                     type: 'array',
                     title: "Raisons de la demande d'aide alimentaire",
@@ -945,7 +986,8 @@ export const inscriptionType = defineType({
                             "Séparation",
                             "Pension alimentaire",
                             "Coût des logements élevé",
-                            "Difficulté à budgeter"
+                            "Difficulté à budgeter",
+                            "Revenus de retraite insuffisants",
                         ]
                     }
                 }),
@@ -958,12 +1000,13 @@ export const inscriptionType = defineType({
                     name: 'SIPPECriterias',
                     type: 'array',
                     title: 'Critères SIPPE',
+                    description: 'Critères d\'admissibilité pour le programme SIPPE --- Le critère de grossesse est obligatoire, et 2 des 3 autres sont aussis requis',
                     of: [{ type: 'string' }],
                     options: {
                         list: [
                             "Grossesse 12 semaines et + jusqu'à 2 ans",
                             "Revenus",
-                            "Faible scolarité",
+                            "Faible scolarité (Sans diplome d'études secondaires ou professionnelles)",
                             "Vit de l'isolement"
                         ]
                     }
@@ -994,14 +1037,20 @@ export const inscriptionType = defineType({
             group: 'inscriptions',
         }),
         defineField({
-            name: "enrolledEvents",
-            title: "Événements inscrits",
-            type: "string",
-            components: {
-                input: MemberEventsInput
-            },
+            name: 'linkedActivities',
+            title: 'Activités liées',
+            type: 'array',
+            of: [
+                {
+                    type: 'object',
+                    fields: [
+                        { name: 'activityId', type: 'reference', to: [{ type: 'activity' }] },
+                        { name: 'date', type: 'datetime' }
+                    ]
+                },
+            ],
             readOnly: true,
-            group: 'inscriptions',
+            hidden: true,
         }),
         defineField({
             name: "notes",
@@ -1021,20 +1070,17 @@ export const inscriptionType = defineType({
             nom: 'nom',
             nom_famille: 'nom_famille',
             zip_code: 'zip_code',
-            nom_conjoint: 'member_form.family_members.conjoint'
+            nom_conjoint: 'member_form.family_members.conjoint',
+            famille: 'member_form.immediate_family',
         },
-        prepare({ nom, nom_famille, zip_code, nom_conjoint }) {
+        prepare({ nom, nom_famille, zip_code, nom_conjoint, famille }) {
             const conjointFormatted = nom_conjoint ? `|| ${nom_conjoint.nom} ${nom_conjoint.nom_famille}` : ''
-
-            console.log(nom_conjoint)
-
-            // const conjointFormatted = `${conjoint.nom} ${conjoint.nom_famille}` || ''
 
             const nameFormatted = `${nom} ${nom_famille} ${conjointFormatted}` || 'Membre inconnu'
 
             return {
                 title: nameFormatted,
-                subtitle: zip_code,
+                subtitle: `${zip_code} - ${famille ? `Famille de ${famille} personnes` : "Seul(e)"}`,
             }
         }
     }

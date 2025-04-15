@@ -68,6 +68,20 @@ export type Geopoint = {
   alt?: number
 }
 
+export type Temoignages = {
+  _id: string
+  _type: 'temoignages'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  temoignages?: Array<{
+    name?: string
+    text?: string
+    _type: 'temoignage'
+    _key: string
+  }>
+}
+
 export type MissionImage = {
   _id: string
   _type: 'missionImage'
@@ -85,6 +99,7 @@ export type MissionImage = {
     crop?: SanityImageCrop
     _type: 'image'
   }
+  missionText?: string
 }
 
 export type AdminTeamMember = {
@@ -356,6 +371,16 @@ export type Card = {
     _type: 'image'
   }
   layout?: 'bigCard' | 'smallCard'
+  link?: {
+    isPage?: boolean
+    url?: string
+    page?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'pageMaker'
+    }
+  }
   color?: Color
 }
 
@@ -955,29 +980,6 @@ export type SanityImageMetadata = {
   isOpaque?: boolean
 }
 
-export type Activity = {
-  _id: string
-  _type: 'activity'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  nom?: string
-  dates?: Array<{
-    date?: string
-    inscriptionOuverte?: boolean
-    openDate?: string
-    isVisible?: boolean
-    members?: Array<{
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      _key: string
-      [internalGroqTypeReferenceTo]?: 'inscription'
-    }>
-    _key: string
-  }>
-}
-
 export type Inscription = {
   _id: string
   _type: 'inscription'
@@ -986,6 +988,7 @@ export type Inscription = {
   _rev: string
   nom?: string
   nom_famille?: string
+  date_naissance?: string
   zip_code?: string
   phone?: Array<{
     phone_type?: 'home' | 'cell' | 'work' | 'other'
@@ -996,6 +999,13 @@ export type Inscription = {
   email?: string
   member_check?: boolean
   member_form?: {
+    adhesionTime?: string
+    paidTime?: string
+    paidMethod?: 'monnaie' | 'credit' | 'debit' | 'free'
+    renewTime?: string
+    transactionId?: string
+    langue_principale?: string
+    langues_secondaires?: Array<string>
     occupation?:
       | 'full_time'
       | 'half-time'
@@ -1004,16 +1014,19 @@ export type Inscription = {
       | 'etudiant'
       | 'retraite'
       | 'no_answer'
-    date_naissance?: string
-    langue_principale?: string
-    langues_secondaires?: Array<string>
-    familial_status?: 'celibataire' | 'couple' | 'marie' | 'veuf' | 'conjoint' | 'no_answer'
-    scolarity?: 'Primaire' | 'Secondaire' | 'C\xE9gep' | 'DEP' | 'Universit\xE9'
-    adhesionTime?: string
-    paidTime?: string
-    paidMethod?: 'monnaie' | 'credit' | 'debit' | 'free'
-    renewTime?: string
-    transactionId?: string
+    scolarity?:
+      | 'Primaire'
+      | 'Secondaire'
+      | "C\xE9gep - Attestation d'\xE9tudes coll\xE9giales"
+      | 'C\xE9gep - Technique'
+      | 'C\xE9gep - Pr\xE9-universitaire'
+      | "Dipl\xF4me d'\xE9tudes professionnelles"
+      | 'Universit\xE9'
+    diplomaCheck?: {
+      diplomaRecognizedCheck?: boolean
+      diplomaRecognizedNotes?: string
+    }
+    revenus?: '<10k' | '10k-20k' | '20k-30k' | '30k-40k' | '40k-50k' | '>50k' | 'no_answer'
     family_members_old?: Array<{
       nom?: string
       nom_famille?: string
@@ -1039,6 +1052,14 @@ export type Inscription = {
       _type: 'family_member'
       _key: string
     }>
+    familial_status?:
+      | 'celibataire'
+      | 'celibataire_enfant'
+      | 'couple'
+      | 'marie'
+      | 'veuf'
+      | 'conjoint'
+      | 'no_answer'
     family_members?: {
       conjoint?: {
         nom?: string
@@ -1073,6 +1094,8 @@ export type Inscription = {
           other_genre?: string
         }
         familyLink?: 'fils' | 'fille' | 'neveu' | 'niece' | 'no_answer'
+        guardianship?: 'full_time' | 'shared' | 'weekend' | 'no_guardianship' | 'other'
+        guardianshipNotes?: string
         _type: 'children'
         _key: string
       }>
@@ -1110,7 +1133,6 @@ export type Inscription = {
       }
     }
     immediate_family?: number
-    revenus?: '<10k' | '10k-20k' | '20k-30k' | '30k-40k' | '40k-50k' | '>50k' | 'no_answer'
   }
   benevole_check?: boolean
   benevole_form?: {
@@ -1131,8 +1153,11 @@ export type Inscription = {
     | 'famille'
     | 'event'
     | 'pastMember'
+    | 'otherOrg'
+    | 'passant'
     | 'other'
     | 'nePasRepondre'
+  connaissanceOther?: string
   moreInfo?: {
     livingPlace?: {
       habitation?: boolean
@@ -1157,7 +1182,7 @@ export type Inscription = {
       | 'SAAQ'
       | 'Pension de retraite'
       | 'Aide financi\xE8re de dernier recours (aide sociale)'
-      | 'Pension de veuve'
+      | 'Pension de veuf(ve)'
       | 'Allocations familiales'
       | 'Pension alimentaire'
       | 'Allocation au logement'
@@ -1171,8 +1196,6 @@ export type Inscription = {
     pastMemberTime?: string
     interestedActivities?: Array<string>
     activitiesComments?: string
-    familyDynamics?: string
-    demands?: string
     foodHelpReasons?: Array<string>
     foodHelpReasonOther?: string
     SIPPECriterias?: Array<string>
@@ -1185,7 +1208,16 @@ export type Inscription = {
     [internalGroqTypeReferenceTo]?: 'formulaires'
   }>
   enrolledActivities?: string
-  enrolledEvents?: string
+  linkedActivities?: Array<{
+    activityId?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'activity'
+    }
+    date?: string
+    _key: string
+  }>
   notes?: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -1202,6 +1234,29 @@ export type Inscription = {
     }>
     level?: number
     _type: 'block'
+    _key: string
+  }>
+}
+
+export type Activity = {
+  _id: string
+  _type: 'activity'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  nom?: string
+  dates?: Array<{
+    date?: string
+    inscriptionOuverte?: boolean
+    openDate?: string
+    isVisible?: boolean
+    members?: Array<{
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      _key: string
+      [internalGroqTypeReferenceTo]?: 'inscription'
+    }>
     _key: string
   }>
 }
@@ -1260,6 +1315,7 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | Temoignages
   | MissionImage
   | AdminTeamMember
   | MeetingNotes
@@ -1296,8 +1352,8 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
-  | Activity
   | Inscription
+  | Activity
   | Color
   | RgbaColor
   | HsvaColor

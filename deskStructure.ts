@@ -97,6 +97,10 @@ export default (S: StructureBuilder) =>
               S.listItem()
                 .title('Image de la mission')
                 .child(S.editor().schemaType('missionImage').documentId('missionImage')),
+
+              S.listItem()
+                .title('Témoignages')
+                .child(S.editor().schemaType('temoignages').documentId('temoignages')),
             ])
         ),
     ]);

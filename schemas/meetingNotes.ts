@@ -4,6 +4,22 @@ export const meetingNotes = defineType({
     name: 'meetingNotes',
     type: 'document',
     title: 'Compte-rendus de rencontre',
+    orderings: [
+        {
+            title: 'Date de rencontre, Décroissant',
+            name: 'meetingDateDesc',
+            by: [
+                { field: 'meetings.meeting.date', direction: 'desc' }
+            ]
+        },
+        {
+            title: 'Date de rencontre, Croissant',
+            name: 'meetingDateAsc',
+            by: [
+                { field: 'meetings.meeting.date', direction: 'asc' }
+            ]
+        }
+    ],
     fields: [
         defineField({
             name: 'patient',
@@ -100,9 +116,19 @@ export const meetingNotes = defineType({
                             title: 'Notes',
                             validation: (rule) => rule.required()
                         })
-                    ]
-                })
-            ]
+                    ],
+                    preview: {
+                        select: {
+                            date: 'date',
+                        },
+                        prepare({ date }) {
+                            return {
+                                title: `Rencontre du ${date}`
+                            };
+                        }
+                    }
+                }),
+            ],
         })
     ],
     preview: {
